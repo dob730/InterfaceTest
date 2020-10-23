@@ -1,0 +1,5733 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Test Report</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/Chart.js/0.2.0/Chart.min.js"></script>
+    <!-- <link href="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js" rel="stylesheet">   -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
+    
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         {  }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+	margin-left: 10px;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+    margin-left: 10px;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+    margin-left: 10px;
+}
+#header_row {
+    font-weight: bold;
+    color: #606060;
+    background-color: #f5f5f5;
+    border-top-width: 10px;
+    border-color: #d6e9c6;
+	font-size: 12px;
+}
+#result_table td {
+    border: 1px solid #f5f5f5;
+    padding: 2px;
+
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #d6e9c6; }
+.failClass  { background-color: #faebcc; }
+.errorClass { background-color: #ebccd1; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+/* -- chars ---------------------------------------------------------------------- */
+.testChars {margin-left: 150px;}
+
+.btn-info1 {
+    color: #fff;
+    background-color: #d6e9c6;
+    border-color: #d6e9c6;
+}
+
+.btn-info2 {
+    color: #fff;
+    background-color: #faebcc;
+    border-color: #faebcc;
+}
+
+.btn-info3 {
+    color: #fff;
+    background-color: #ebccd1;
+    border-color: #ebccd1;
+}
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>Test Report</h1>
+<p class='attribute'><strong>Start Time:</strong> 2020-08-31 08:58:36</p>
+<p class='attribute'><strong>Duration:</strong> 0:02:14.096958</p>
+<p class='attribute'><strong>Status:</strong> Pass 103 Failure 6</p>
+
+<p class='description'>Test Description</p>
+</div>
+
+<div style="float:left; margin-left: 10px;">
+	<p> Test Case Pie charts </p>
+	<a class="btn btn-xs btn-info1">-Pass-</a><br>
+	<a class="btn btn-xs btn-info2">-Faild-</a><br>
+	<a class="btn btn-xs btn-info3">-Error-</a><br>
+</div>
+
+<div class="testChars">
+	<canvas id="myChart" width="250" height="250"></canvas>
+</div>
+
+
+
+<p id='show_detail_line' style="margin-left: 10px;">Show
+<a href='javascript:showCase(0)' class="btn btn-outline-primary btn-sm">Summary</a>
+<a href='javascript:showCase(1)' class="btn btn-outline-warning btn-sm">Failed</a>
+<a href='javascript:showCase(2)' class="btn btn-outline-info btn-sm">All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Casename</td>
+    <td>AvgDuration</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='failClass'>
+    <td>paramunittest.Refund_0</td>
+    <td>退款交易</td>
+    <td>0.898</td>
+    <td>2</td>
+    <td>0</td>
+    <td>2</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',2)">Detail</a></td>
+</tr>
+
+<tr id='ft1.1' class='none'>
+    <td class='failCase'><div class='testcase'>testRefund</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        fail</a>
+
+    <div id='div_ft1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.1: 退款交易測試開始前準備
+duration:0.7967159748077393
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=1000000.0&amp;cardcvc2=057&amp;cardexpiry=203003&amp;cardnumber=4682358976116102&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085836&amp;merchantnumber=118460&amp;ordernumber=20200831&amp;paymemo=20200831085836&amp;paymenttype=creditcard&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085836&amp;transmode=N&amp;checksum=630dd12ad647d405975e60d2db33074a72e8bdc6cbccd5ab1b8903af529f7854
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831",
+    "paymentnumber": "19520",
+    "rc": "1",
+    "redirect_data": {
+        "strRqXML": "&lt;?xml version='1.0' encoding='UTF-8'?&gt;&lt;MERCHANTXML&gt;&lt;CAVALUE&gt;F3F3402F354102905044E0636DC86216&lt;/CAVALUE&gt;&lt;MSGID&gt;TRS0001&lt;/MSGID&gt;&lt;ORDERINFO&gt;&lt;STOREID&gt;990230025&lt;/STOREID&gt;&lt;ORDERNUMBER&gt;68153&lt;/ORDERNUMBER&gt;&lt;AMOUNT&gt;1000000&lt;/AMOUNT&gt;&lt;/ORDERINFO&gt;&lt;PAYMENTINFO&gt;&lt;CARDNO&gt;4682358976116102&lt;/CARDNO&gt;&lt;EXPIRE&gt;203003&lt;/EXPIRE&gt;&lt;CVC2&gt;057&lt;/CVC2&gt;&lt;/PAYMENTINFO&gt;&lt;/MERCHANTXML&gt;"
+    },
+    "redirect_encode": "utf-8",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/cc/cub"
+}
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/refund?merchantnumber=118460&amp;ordernumber=20200830&amp;refundamount=1000000.0&amp;timestamp=20200831085836&amp;checksum=2b3af24f4112427137d330b72c7503a5d394bf682c6eaabd9618050f458b7700
+
+請求返回值：
+{
+    "rc": "300",
+    "rm": "訂單不存在"
+}
+測試結束，輸出log完結
+
+
+Traceback (most recent call last):
+  File "D:\InterfaceTest\testCase\user\testRefund.py", line 124, in testRefund
+    self.checkResult()
+  File "D:\InterfaceTest\testCase\user\testRefund.py", line 164, in checkResult
+    self.assertEqual(self.info['rc'], str(self.rc))
+AssertionError: '300' != '0'
+- 300
++ 0
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.2' class='none'>
+    <td class='failCase'><div class='testcase'>testRefund</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
+        fail</a>
+
+    <div id='div_ft1.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.2: 退款交易測試開始前準備
+duration:0.34330320358276367
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=1000000.0&amp;cardcvc2=057&amp;cardexpiry=203003&amp;cardnumber=4682358976116102&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085838&amp;merchantnumber=118558&amp;ordernumber=20200831&amp;paymemo=20200831085838&amp;paymenttype=creditcard&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085838&amp;transmode=N&amp;checksum=372d1f711d82943bbcef2124924e417097df0ecf4bc03e7aaa59a3cf6bcef003
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831",
+    "paymentnumber": "19522",
+    "rc": "1",
+    "redirect_data": {
+        "strRqXML": "&lt;?xml version='1.0' encoding='UTF-8'?&gt;&lt;MERCHANTXML&gt;&lt;CAVALUE&gt;3934A66F823C29F97B653FB1FE227D82&lt;/CAVALUE&gt;&lt;MSGID&gt;TRS0001&lt;/MSGID&gt;&lt;ORDERINFO&gt;&lt;STOREID&gt;990230025&lt;/STOREID&gt;&lt;ORDERNUMBER&gt;68155&lt;/ORDERNUMBER&gt;&lt;AMOUNT&gt;1000000&lt;/AMOUNT&gt;&lt;/ORDERINFO&gt;&lt;PAYMENTINFO&gt;&lt;CARDNO&gt;4682358976116102&lt;/CARDNO&gt;&lt;EXPIRE&gt;203003&lt;/EXPIRE&gt;&lt;CVC2&gt;057&lt;/CVC2&gt;&lt;/PAYMENTINFO&gt;&lt;/MERCHANTXML&gt;"
+    },
+    "redirect_encode": "utf-8",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/cc/cub"
+}
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/refund?merchantnumber=118558&amp;ordernumber=20200830&amp;refundamount=1000000.0&amp;timestamp=20200831085838&amp;checksum=1ee6090c801e0fc5a57ec851620a7511f60a2619eacd3a08f7d8c9da6f9f0ff3
+
+請求返回值：
+{
+    "rc": "300",
+    "rm": "訂單不存在"
+}
+測試結束，輸出log完結
+
+
+Traceback (most recent call last):
+  File "D:\InterfaceTest\testCase\user\testRefund.py", line 124, in testRefund
+    self.checkResult()
+  File "D:\InterfaceTest\testCase\user\testRefund.py", line 164, in checkResult
+    self.assertEqual(self.info['rc'], str(self.rc))
+AssertionError: '300' != '0'
+- 300
++ 0
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='failClass'>
+    <td>paramunittest.Refund_1</td>
+    <td>退款交易_無3D_117840</td>
+    <td>0.773</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c2',1)">Detail</a></td>
+</tr>
+
+<tr id='ft2.1' class='none'>
+    <td class='failCase'><div class='testcase'>testRefund</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.1')" >
+        fail</a>
+
+    <div id='div_ft2.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.1: 退款交易_無3D_117840測試開始前準備
+duration:0.6946663856506348
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=100&amp;cardcvc2=057&amp;cardexpiry=203003&amp;cardnumber=4682358976116102&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085837&amp;merchantnumber=117840&amp;ordernumber=20200831&amp;paymemo=20200831085837&amp;paymenttype=creditcard&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085837&amp;transmode=N&amp;checksum=05567d10474d481ffbb0e97bb747653e1320688bc6b5dfafb7cb5ab2782ba807
+
+請求返回值：
+{
+    "approvecode": "063155",
+    "bankapprovetime": "20200831085841",
+    "bankrc1": "0000",
+    "bankrc2": "0000",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831",
+    "paymentnumber": "19521",
+    "rc": "0",
+    "uirc": ""
+}
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/refund?merchantnumber=117840&amp;ordernumber=20200830&amp;refundamount=100&amp;timestamp=20200831085837&amp;checksum=ee7ef62f6108ee6ef00c17738e287bd904ee0c99223e3cba8b746b60edfd37aa
+
+請求返回值：
+{
+    "rc": "300",
+    "rm": "訂單不存在"
+}
+測試結束，輸出log完結
+
+
+Traceback (most recent call last):
+  File "D:\InterfaceTest\testCase\user\testRefund.py", line 124, in testRefund
+    self.checkResult()
+  File "D:\InterfaceTest\testCase\user\testRefund.py", line 148, in checkResult
+    self.assertEqual(self.info['rc'], str(self.rc))
+AssertionError: '300' != '0'
+- 300
++ 0
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.QueryOrder_0</td>
+    <td>查詢交易</td>
+    <td>0.070</td>
+    <td>2</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c3',2)">Detail</a></td>
+</tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testQueryOrder</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.1')" >
+        pass</a>
+
+    <div id='div_pt3.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.1: 查詢交易測試開始前準備
+duration:0.07810544967651367
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/query_order?merchantnumber=118460&amp;ordernumber=20200422100435&amp;timestamp=20200831085838&amp;checksum=52131e249e3855b25fdb35c6513619ae905dce9b337d953142bbdcd36de60a78
+
+請求返回值：
+{
+    "order": {
+        "amount": 10000,
+        "currency": "TWD",
+        "merchantnumber": "118460",
+        "ordernumber": "20200422100435",
+        "orderstate": "5",
+        "payments": [
+            {
+                "approveamount": 10000,
+                "approvecode": "745963",
+                "approvetime": 20200422100436,
+                "cardbrand": "VISA",
+                "cardnumbermask": "468235******6102",
+                "paymentsno": 6250,
+                "paymentstate": "3",
+                "period": 0,
+                "transmode": "N"
+            }
+        ],
+        "paymenttype": "creditcard",
+        "timecreated": "20200422100436"
+    },
+    "rc": "0"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testQueryOrder</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.2')" >
+        pass</a>
+
+    <div id='div_pt3.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.2: 查詢交易測試開始前準備
+duration:0.06251192092895508
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/query_order?merchantnumber=118558&amp;ordernumber=Text0000&amp;timestamp=20200831085838&amp;checksum=31d57e83e8d53ae362972b4fed4494ffb00efe248e121e4e304763861e583ee7
+
+請求返回值：
+{
+    "order": {
+        "amount": 1000,
+        "currency": "TWD",
+        "merchantnumber": "118558",
+        "ordernumber": "Text0000",
+        "orderstate": "5",
+        "payments": [
+            {
+                "approveamount": 1000,
+                "approvecode": "909718",
+                "approvetime": 20200710103314,
+                "cardbrand": "VISA",
+                "cardnumbermask": "468235******6102",
+                "paymentsno": 12094,
+                "paymentstate": "3",
+                "period": 0,
+                "transmode": "N"
+            }
+        ],
+        "paymenttype": "creditcard",
+        "timecreated": "20200710103312"
+    },
+    "rc": "0"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.QueryOrder_1</td>
+    <td>查詢交易_117840</td>
+    <td>0.055</td>
+    <td>2</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c4',2)">Detail</a></td>
+</tr>
+
+<tr id='pt4.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testQueryOrder</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.1')" >
+        pass</a>
+
+    <div id='div_pt4.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt4.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt4.1: 查詢交易_117840測試開始前準備
+duration:0.062456369400024414
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/query_order?merchantnumber=117840&amp;ordernumber=20191209094542&amp;timestamp=20200831085838&amp;checksum=7e516ffc85f9263d0c7206e8bd45957ae87c112dd5f49fdf7a048e0efaac0c70
+
+請求返回值：
+{
+    "order": {
+        "amount": 2019,
+        "currency": "TWD",
+        "merchantnumber": "117840",
+        "ordernumber": "20191209094542",
+        "orderstate": "5",
+        "payments": [
+            {
+                "approveamount": 2019,
+                "approvecode": "530086",
+                "approvetime": 20191209094543,
+                "cardbrand": "VISA",
+                "cardnumbermask": "468235******6102",
+                "paymentsno": 4285,
+                "paymentstate": "3",
+                "period": 0,
+                "transmode": "N"
+            }
+        ],
+        "paymenttype": "creditcard",
+        "refunds": [
+            {
+                "refundamount": 2019,
+                "refundreversaltime": 20191210172548,
+                "refundsno": 181,
+                "refundstate": "4",
+                "refundtime": 20191210152832
+            },
+            {
+                "refundamount": 10,
+                "refundreversaltime": 20191210172650,
+                "refundsno": 187,
+                "refundstate": "4",
+                "refundtime": 20191210172616
+            },
+            {
+                "refundamount": 10,
+                "refundreversaltime": 20191210173952,
+                "refundsno": 188,
+                "refundstate": "4",
+                "refundtime": 20191210173932
+            },
+            {
+                "refundamount": 10,
+                "refundreversaltime": 20191211135731,
+                "refundsno": 190,
+                "refundstate": "4",
+                "refundtime": 20191211105744
+            }
+        ],
+        "timecreated": "20191209094544"
+    },
+    "rc": "0"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt4.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testQueryOrder</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.2')" >
+        pass</a>
+
+    <div id='div_pt4.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt4.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt4.2: 查詢交易_117840測試開始前準備
+duration:0.04686403274536133
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/query_order?merchantnumber=117840&amp;ordernumber=2020&amp;timestamp=20200831085838&amp;checksum=1a8c62e08c415bdecc935cdf25f97845ee6dea9a476b9e5da6bba5f3c594324b
+
+請求返回值：
+{
+    "rc": "300",
+    "rm": "訂單不存在(merchantnumber=117840, ordernumber=2020)"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='failClass'>
+    <td>paramunittest.RefundReversal_0</td>
+    <td>退款取消</td>
+    <td>0.062</td>
+    <td>2</td>
+    <td>0</td>
+    <td>2</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c5',2)">Detail</a></td>
+</tr>
+
+<tr id='ft5.1' class='none'>
+    <td class='failCase'><div class='testcase'>testRefundReversal</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft5.1')" >
+        fail</a>
+
+    <div id='div_ft5.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft5.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft5.1: 退款取消測試開始前準備
+duration:0.062485456466674805
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/query_order?merchantnumber=118460&amp;ordernumber=20200830&amp;timestamp=20200831085839&amp;checksum=8dab0607aeef301d74ec51bd568b7ab2b348029c4ddf067b4540cb05d91d7273
+
+請求返回值：
+{
+    "rc": "300",
+    "rm": "訂單不存在(merchantnumber=118460, ordernumber=20200830)"
+}
+測試結束，輸出log完結
+
+
+Traceback (most recent call last):
+  File "D:\InterfaceTest\testCase\user\testRefundReversal.py", line 86, in testRefundReversal
+    self.checkResult()
+  File "D:\InterfaceTest\testCase\user\testRefundReversal.py", line 114, in checkResult
+    self.assertEqual(self.info['rc'], str(self.rc))
+AssertionError: '300' != '0'
+- 300
++ 0
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft5.2' class='none'>
+    <td class='failCase'><div class='testcase'>testRefundReversal</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft5.2')" >
+        fail</a>
+
+    <div id='div_ft5.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft5.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft5.2: 退款取消測試開始前準備
+duration:0.062456607818603516
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/query_order?merchantnumber=118558&amp;ordernumber=20200830&amp;timestamp=20200831085839&amp;checksum=b7f400f6aad5898151527d869b3bf6a8817718481ebf7612992b2db3d89ad35a
+
+請求返回值：
+{
+    "rc": "300",
+    "rm": "訂單不存在(merchantnumber=118558, ordernumber=20200830)"
+}
+測試結束，輸出log完結
+
+
+Traceback (most recent call last):
+  File "D:\InterfaceTest\testCase\user\testRefundReversal.py", line 86, in testRefundReversal
+    self.checkResult()
+  File "D:\InterfaceTest\testCase\user\testRefundReversal.py", line 114, in checkResult
+    self.assertEqual(self.info['rc'], str(self.rc))
+AssertionError: '300' != '0'
+- 300
++ 0
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='failClass'>
+    <td>paramunittest.RefundReversal_1</td>
+    <td>退款取消_117840</td>
+    <td>0.078</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c6',1)">Detail</a></td>
+</tr>
+
+<tr id='ft6.1' class='none'>
+    <td class='failCase'><div class='testcase'>testRefundReversal</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft6.1')" >
+        fail</a>
+
+    <div id='div_ft6.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft6.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft6.1: 退款取消_117840測試開始前準備
+duration:0.07810807228088379
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/query_order?merchantnumber=117840&amp;ordernumber=20200830&amp;timestamp=20200831085839&amp;checksum=136bc99e272c22332eb5be347029ff4f94f2ea7a45acf014e4c78168b3599783
+
+請求返回值：
+{
+    "rc": "300",
+    "rm": "訂單不存在(merchantnumber=117840, ordernumber=20200830)"
+}
+測試結束，輸出log完結
+
+
+Traceback (most recent call last):
+  File "D:\InterfaceTest\testCase\user\testRefundReversal.py", line 86, in testRefundReversal
+    self.checkResult()
+  File "D:\InterfaceTest\testCase\user\testRefundReversal.py", line 114, in checkResult
+    self.assertEqual(self.info['rc'], str(self.rc))
+AssertionError: '300' != '0'
+- 300
++ 0
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.CancelOrder_0</td>
+    <td>取消交易</td>
+    <td>2.362</td>
+    <td>2</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c7',2)">Detail</a></td>
+</tr>
+
+<tr id='pt7.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testCancelOrder</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt7.1')" >
+        pass</a>
+
+    <div id='div_pt7.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt7.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt7.1: 取消交易測試開始前準備
+duration:0.35928988456726074
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=1000000&amp;cardcvc2=057&amp;cardexpiry=203003&amp;cardnumber=4682358976116102&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085839&amp;merchantnumber=118460&amp;ordernumber=20200831085839&amp;paymemo=20200831085839&amp;paymenttype=creditcard&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085839&amp;transmode=N&amp;checksum=372bc497a1aa92d0893b7368898ca4caa2391da0964707748ded4846666d9a45
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085839",
+    "paymentnumber": "19523",
+    "rc": "1",
+    "redirect_data": {
+        "strRqXML": "&lt;?xml version='1.0' encoding='UTF-8'?&gt;&lt;MERCHANTXML&gt;&lt;CAVALUE&gt;C3DA9B611D696B29B7EDAB487963BE22&lt;/CAVALUE&gt;&lt;MSGID&gt;TRS0001&lt;/MSGID&gt;&lt;ORDERINFO&gt;&lt;STOREID&gt;990230025&lt;/STOREID&gt;&lt;ORDERNUMBER&gt;68156&lt;/ORDERNUMBER&gt;&lt;AMOUNT&gt;1000000&lt;/AMOUNT&gt;&lt;/ORDERINFO&gt;&lt;PAYMENTINFO&gt;&lt;CARDNO&gt;4682358976116102&lt;/CARDNO&gt;&lt;EXPIRE&gt;203003&lt;/EXPIRE&gt;&lt;CVC2&gt;057&lt;/CVC2&gt;&lt;/PAYMENTINFO&gt;&lt;/MERCHANTXML&gt;"
+    },
+    "redirect_encode": "utf-8",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/cc/cub"
+}
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/cancel_order?merchantnumber=118460&amp;ordernumber=20200831085839&amp;timestamp=20200831085839&amp;checksum=368c92725bd610066d0d2751808165fc9e87a014b20a17185c1505df858d618f
+
+請求返回值：
+{
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085839",
+    "paymenttype": "creditcard",
+    "rc": "0"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt7.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testCancelOrder</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt7.2')" >
+        pass</a>
+
+    <div id='div_pt7.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt7.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt7.2: 取消交易測試開始前準備
+duration:0.3437032699584961
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=1000000&amp;cardcvc2=057&amp;cardexpiry=203003&amp;cardnumber=4682358976116102&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085842&amp;merchantnumber=118558&amp;ordernumber=20200831085842&amp;paymemo=20200831085842&amp;paymenttype=creditcard&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085842&amp;transmode=N&amp;checksum=d8742d07d9a611f6b6f62d137f720ed6504e7e437ab92635e4d1b233aefa08ce
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831085842",
+    "paymentnumber": "19525",
+    "rc": "1",
+    "redirect_data": {
+        "strRqXML": "&lt;?xml version='1.0' encoding='UTF-8'?&gt;&lt;MERCHANTXML&gt;&lt;CAVALUE&gt;EE5B24E4B100FE9A10CE7E932A5A0C3F&lt;/CAVALUE&gt;&lt;MSGID&gt;TRS0001&lt;/MSGID&gt;&lt;ORDERINFO&gt;&lt;STOREID&gt;990230025&lt;/STOREID&gt;&lt;ORDERNUMBER&gt;68158&lt;/ORDERNUMBER&gt;&lt;AMOUNT&gt;1000000&lt;/AMOUNT&gt;&lt;/ORDERINFO&gt;&lt;PAYMENTINFO&gt;&lt;CARDNO&gt;4682358976116102&lt;/CARDNO&gt;&lt;EXPIRE&gt;203003&lt;/EXPIRE&gt;&lt;CVC2&gt;057&lt;/CVC2&gt;&lt;/PAYMENTINFO&gt;&lt;/MERCHANTXML&gt;"
+    },
+    "redirect_encode": "utf-8",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/cc/cub"
+}
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/cancel_order?merchantnumber=118558&amp;ordernumber=20200831085842&amp;timestamp=20200831085842&amp;checksum=616471a3d44803652580574ce9dde74177b8608bb0a8d71a8eee5d258356f656
+
+請求返回值：
+{
+    "merchantnumber": "118558",
+    "ordernumber": "20200831085842",
+    "paymenttype": "creditcard",
+    "rc": "0"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.CancelOrder_1</td>
+    <td>取消交易_117840</td>
+    <td>0.364</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c8',3)">Detail</a></td>
+</tr>
+
+<tr id='pt8.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testCancelOrder</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.1')" >
+        pass</a>
+
+    <div id='div_pt8.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.1: 取消交易_117840測試開始前準備
+duration:0.4373960494995117
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=1000&amp;cardcvc2=057&amp;cardexpiry=203003&amp;cardnumber=4682358976116102&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085841&amp;merchantnumber=117840&amp;ordernumber=20200831085841&amp;paymemo=20200831085841&amp;paymenttype=creditcard&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085841&amp;transmode=N&amp;checksum=302887aff9f2bf35ae18bc4bbefa1394eaed8eebe60ab73213f019c30662841b
+
+請求返回值：
+{
+    "approvecode": "164402",
+    "bankapprovetime": "20200831085845",
+    "bankrc1": "0000",
+    "bankrc2": "0000",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085841",
+    "paymentnumber": "19524",
+    "rc": "0",
+    "uirc": ""
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testCancelOrder</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.2')" >
+        pass</a>
+
+    <div id='div_pt8.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.2: 取消交易_117840測試開始前準備
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/cancel_order?merchantnumber=117840&amp;ordernumber=1585643676&amp;timestamp=20200831085842&amp;checksum=3bb00bf0a337adb3e630c2227a71fea42942c28cf8d4f794cf8cc26acc3986b5
+
+請求返回值：
+{
+    "merchantnumber": "117840",
+    "ordernumber": "1585643676",
+    "rc": "201",
+    "rm": "支付工具不支援取消訂單"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testCancelOrder</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.3')" >
+        pass</a>
+
+    <div id='div_pt8.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.3: 取消交易_117840測試開始前準備
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/cancel_order?merchantnumber=117840&amp;ordernumber=20200401164621&amp;timestamp=20200831085842&amp;checksum=0b3be0dbfa98e944046578d17d2cfe4978eb7b7f8435e4b31bee70c50592af27
+
+請求返回值：
+{
+    "rc": "302",
+    "rm": "訂單狀態無法取消"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_0</td>
+    <td>atm</td>
+    <td>1.518</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c9',3)">Detail</a></td>
+</tr>
+
+<tr id='pt9.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.1')" >
+        pass</a>
+
+    <div id='div_pt9.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt9.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt9.1: atm測試開始前準備
+duration:0.3749120235443115
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=100&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085845&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085845&amp;paymemo=20200831085845&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085845&amp;transmode=&amp;checksum=6c4e25ce447522ec862657ade96edcd3a8d2f593e51c52cd7f9ca4453047ba50
+
+請求返回值：
+{
+    "amount": "100",
+    "bankid": "007",
+    "duedate": "20200930085845",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085845",
+    "paymentnumber": 25314,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000194863"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.2')" >
+        pass</a>
+
+    <div id='div_pt9.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt9.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt9.2: atm測試開始前準備
+duration:0.31865882873535156
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=200&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085914&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085914&amp;paymemo=20200831085914&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=test&amp;timestamp=20200831085914&amp;transmode=&amp;checksum=2e57c770e3882a299efb0705b48faccc976e5e3e00e0ddf2424928efb3f09323
+
+請求返回值：
+{
+    "amount": "200",
+    "bankid": "007",
+    "duedate": "20200930085914",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085914",
+    "paymentnumber": 25329,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000994913"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.3')" >
+        pass</a>
+
+    <div id='div_pt9.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt9.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt9.3: atm測試開始前準備
+duration:0.8411591053009033
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=100&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090006&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090006&amp;paymemo=20200831090006&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831090006&amp;transmode=&amp;checksum=57bc4d33f8036358c51bee21d01ae52776a14ff87637eaaa80566e595ce9463b
+
+請求返回值：
+{
+    "amount": "100",
+    "bankid": "007",
+    "duedate": "20200930090006",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090006",
+    "paymentnumber": 25346,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000594966"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_1</td>
+    <td>mmk_ibon</td>
+    <td>1.527</td>
+    <td>2</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c10',2)">Detail</a></td>
+</tr>
+
+<tr id='pt10.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt10.1')" >
+        pass</a>
+
+    <div id='div_pt10.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt10.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt10.1: mmk_ibon測試開始前準備
+duration:0.29680538177490234
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085846&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085846&amp;paymemo=20200831085846-api&amp;paymentmode=ibon_555555&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085846&amp;transmode=&amp;checksum=e2490d2b17528d7bd3308f7a7b99e77b5183a2be15c61207f4a68feb14249693
+
+請求返回值：
+{
+    "amount": "10000",
+    "duedate": "20200930085846",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085846",
+    "paycode": "EST00030136066",
+    "paymentnumber": 131555,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt10.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt10.2')" >
+        pass</a>
+
+    <div id='div_pt10.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt10.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt10.2: mmk_ibon測試開始前準備
+duration:0.7356603145599365
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090008&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090008&amp;paymemo=20200831090008-api&amp;paymentmode=ibon_555555&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090008&amp;transmode=&amp;checksum=fa17e18473255a3a03f2420386b8e23545b709ed84e822cc9a7f49251373bfac
+
+請求返回值：
+{
+    "amount": "10000",
+    "duedate": "20200930090008",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090008",
+    "paycode": "EST00010136680",
+    "paymentnumber": 131569,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_10</td>
+    <td>mmk_金額邊界值_小於交易金額</td>
+    <td>1.143</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c11',3)">Detail</a></td>
+</tr>
+
+<tr id='pt11.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt11.1')" >
+        pass</a>
+
+    <div id='div_pt11.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt11.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt11.1: mmk_金額邊界值_小於交易金額測試開始前準備
+duration:0.09369945526123047
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=49.0&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085847&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085847&amp;paymemo=20200831085847-api&amp;paymentmode=ibon_555555&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085847&amp;transmode=&amp;checksum=6ad754647db997c11923a9358b7184f16c97c5c8b948d9dfd71d3b26f1449906
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "交易金額過低"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt11.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt11.2')" >
+        pass</a>
+
+    <div id='div_pt11.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt11.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt11.2: mmk_金額邊界值_小於交易金額測試開始前準備
+duration:0.10960173606872559
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=49&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085928&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085928&amp;paymemo=20200831085928-api&amp;paymentmode=&amp;paymenttype=mmk&amp;payphone=0917001177&amp;paytitle=mmk_%E9%87%91%E9%A1%8D%E9%82%8A%E7%95%8C%E5%80%BC_%E5%B0%8F%E6%96%BC%E4%BA%A4%E6%98%93%E9%87%91%E9%A1%8D&amp;timestamp=20200831085928&amp;transmode=&amp;checksum=d68638d8f28a27a7763922867f62cda9dc9a61f18e14ecb9174c86a9d7fceb68
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "交易金額過低"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt11.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt11.3')" >
+        pass</a>
+
+    <div id='div_pt11.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt11.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt11.3: mmk_金額邊界值_小於交易金額測試開始前準備
+duration:0.2006070613861084
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=49.0&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090022&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090022&amp;paymemo=20200831090022-api&amp;paymentmode=ibon_555555&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090022&amp;transmode=&amp;checksum=a8686e800e26c06630d251dd0248d98acfd7a0121c26be199ce7148b496c8f37
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "交易金額過低"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_11</td>
+    <td>mmk_paymentmode_不指定</td>
+    <td>1.323</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c12',3)">Detail</a></td>
+</tr>
+
+<tr id='pt12.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.1')" >
+        pass</a>
+
+    <div id='div_pt12.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt12.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt12.1: mmk_paymentmode_不指定測試開始前準備
+duration:0.3124213218688965
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000.0&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085848&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085848&amp;paymemo=A20200831085848&amp;paymentmode=&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085848&amp;transmode=&amp;checksum=4337fb09bfadf69b8edda524b5e8acd7c03c08a02aa731d4d8020e857d8a2eb2
+
+請求返回值：
+{
+    "amount": "10000",
+    "duedate": "20200930085848",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085848",
+    "paycode": "EST00020136467",
+    "paymentnumber": 131556,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt12.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.2')" >
+        pass</a>
+
+    <div id='div_pt12.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt12.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt12.2: mmk_paymentmode_不指定測試開始前準備
+duration:0.3075838088989258
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=400&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085955&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085955&amp;paymemo=A20200831085955&amp;paymentmode=&amp;paymenttype=mmk&amp;payphone=0917001177&amp;paytitle=mmk_paymentmode_%E4%B8%8D%E6%8C%87%E5%AE%9A&amp;timestamp=20200831085955&amp;transmode=&amp;checksum=c50f95d1476210b8ac5bc58b2142cf98996acc08db828a5389e010d7fe3cde17
+
+請求返回值：
+{
+    "amount": "400",
+    "duedate": "20200930085955",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085955",
+    "paycode": "EST00010136678",
+    "paymentnumber": 131567,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt12.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.3')" >
+        pass</a>
+
+    <div id='div_pt12.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt12.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt12.3: mmk_paymentmode_不指定測試開始前準備
+duration:0.31656813621520996
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000.0&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090023&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090023&amp;paymemo=A20200831090023&amp;paymentmode=&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090023&amp;transmode=&amp;checksum=0b8bbc1222355890ae5c78c8cd1bb6cabfc3abe6f0e8bf6b5fc823d750a0b9ce
+
+請求返回值：
+{
+    "amount": "10000",
+    "duedate": "20200930090023",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090023",
+    "paycode": "EST00090136888",
+    "paymentnumber": 131577,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_12</td>
+    <td>atm_金額邊界值_大於交易金額</td>
+    <td>1.117</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c13',3)">Detail</a></td>
+</tr>
+
+<tr id='pt13.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt13.1')" >
+        pass</a>
+
+    <div id='div_pt13.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt13.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt13.1: atm_金額邊界值_大於交易金額測試開始前準備
+duration:0.09375596046447754
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=30001&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085850&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085850&amp;paymemo=20200831085850&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085850&amp;transmode=&amp;checksum=5864d55c03c3809485984361eb9b1cc7e6df808a1ec4b8c2de30a0c5bba29483
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "交易金額過高"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt13.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt13.2')" >
+        pass</a>
+
+    <div id='div_pt13.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt13.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt13.2: atm_金額邊界值_大於交易金額測試開始前準備
+duration:0.10679864883422852
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=30001&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085931&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085931&amp;paymemo=20200831085931&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=atm_%E9%87%91%E9%A1%8D%E9%82%8A%E7%95%8C%E5%80%BC_%E5%A4%A7%E6%96%BC%E4%BA%A4%E6%98%93%E9%87%91%E9%A1%8D&amp;timestamp=20200831085931&amp;transmode=&amp;checksum=f9659f0721bc1faf419b39e7eb95e3a208c3d215f75121371925ad0ca6b675d2
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "交易金額過高"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt13.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt13.3')" >
+        pass</a>
+
+    <div id='div_pt13.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt13.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt13.3: atm_金額邊界值_大於交易金額測試開始前準備
+duration:0.11596512794494629
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=30001&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090024&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090024&amp;paymemo=20200831090024&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831090024&amp;transmode=&amp;checksum=76bfd757e0cf22353fac3a4fcfa00bd4eb467dd3c12bf0c9e04b3ef9a54a2833
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "交易金額過高"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_13</td>
+    <td>atm_金額邊界值1</td>
+    <td>1.429</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c14',3)">Detail</a></td>
+</tr>
+
+<tr id='pt14.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt14.1')" >
+        pass</a>
+
+    <div id='div_pt14.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt14.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt14.1: atm_金額邊界值1測試開始前準備
+duration:0.328047513961792
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=30000&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085851&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085851&amp;paymemo=20200831085851&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085851&amp;transmode=&amp;checksum=234264f41b59329f8a468c5716a797a8cf77660f1429b05449dce1f402fe048b
+
+請求返回值：
+{
+    "amount": "30000",
+    "bankid": "007",
+    "duedate": "20200930085851",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085851",
+    "paymentnumber": 25315,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000794870"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt14.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt14.2')" >
+        pass</a>
+
+    <div id='div_pt14.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt14.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt14.2: atm_金額邊界值1測試開始前準備
+duration:0.3853161334991455
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=30000&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085932&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085932&amp;paymemo=20200831085932&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=atm_%E9%87%91%E9%A1%8D%E9%82%8A%E7%95%8C%E5%80%BC1&amp;timestamp=20200831085932&amp;transmode=&amp;checksum=04c5fe77caab56c34f933396072cf8221980bea63ef6ded3d3c292e182b17760
+
+請求返回值：
+{
+    "amount": "30000",
+    "bankid": "007",
+    "duedate": "20200930085932",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085932",
+    "paymentnumber": 25331,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000494921"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt14.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt14.3')" >
+        pass</a>
+
+    <div id='div_pt14.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt14.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt14.3: atm_金額邊界值1測試開始前準備
+duration:0.5494232177734375
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=30000&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090025&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090025&amp;paymemo=20200831090025&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831090025&amp;transmode=&amp;checksum=b1e1e1f5c26e5ad1ac26c1b413a5ac45a2a4aafaf9f690d0b0bd5213ff19c33b
+
+請求返回值：
+{
+    "amount": "30000",
+    "bankid": "007",
+    "duedate": "20200930090025",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090025",
+    "paymentnumber": 25348,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000194976"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_14</td>
+    <td>atm_金額邊界值2</td>
+    <td>1.382</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c15',3)">Detail</a></td>
+</tr>
+
+<tr id='pt15.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt15.1')" >
+        pass</a>
+
+    <div id='div_pt15.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt15.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt15.1: atm_金額邊界值2測試開始前準備
+duration:0.42177748680114746
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=29999&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085852&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085852&amp;paymemo=20200831085852&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085852&amp;transmode=&amp;checksum=9c3d6c0727e351c7c3155e5cbe9d4e7d0cf7a895c20d43f192df26292a47646f
+
+請求返回值：
+{
+    "amount": "29999",
+    "bankid": "007",
+    "duedate": "20200930085852",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085852",
+    "paymentnumber": 25316,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000594880"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt15.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt15.2')" >
+        pass</a>
+
+    <div id='div_pt15.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt15.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt15.2: atm_金額邊界值2測試開始前準備
+duration:0.3379099369049072
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=1000&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085933&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085933&amp;paymemo=20200831085933&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=atm_%E9%87%91%E9%A1%8D%E9%82%8A%E7%95%8C%E5%80%BC2&amp;timestamp=20200831085933&amp;transmode=&amp;checksum=65895a9a2a1a6380d2685aedea57d1b6822f2ec42b7bcd4298adddf265ca4593
+
+請求返回值：
+{
+    "amount": "1000",
+    "bankid": "007",
+    "duedate": "20200930085933",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085933",
+    "paymentnumber": 25332,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000794933"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt15.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt15.3')" >
+        pass</a>
+
+    <div id='div_pt15.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt15.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt15.3: atm_金額邊界值2測試開始前準備
+duration:0.35488080978393555
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=29999&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090027&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090027&amp;paymemo=20200831090027&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831090027&amp;transmode=&amp;checksum=16a9975fada93bd5de9c1ae33eee0606d4969146679fc3b2fbb347edb49004e7
+
+請求返回值：
+{
+    "amount": "29999",
+    "bankid": "007",
+    "duedate": "20200930090027",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090027",
+    "paymentnumber": 25349,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000294985"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_15</td>
+    <td>atm_金額邊界值3</td>
+    <td>1.342</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c16',3)">Detail</a></td>
+</tr>
+
+<tr id='pt16.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt16.1')" >
+        pass</a>
+
+    <div id='div_pt16.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt16.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt16.1: atm_金額邊界值3測試開始前準備
+duration:0.31211090087890625
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=51&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085854&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085854&amp;paymemo=20200831085854&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085854&amp;transmode=&amp;checksum=00ede09f4584222da960958660bbb01d2eccc152e3ece7e429c4b682217d56bb
+
+請求返回值：
+{
+    "amount": "51",
+    "bankid": "007",
+    "duedate": "20200930085854",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085854",
+    "paymentnumber": 25317,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000294892"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt16.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt16.2')" >
+        pass</a>
+
+    <div id='div_pt16.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt16.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt16.2: atm_金額邊界值3測試開始前準備
+duration:0.306903600692749
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=200&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085935&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085935&amp;paymemo=20200831085935&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=atm_%E9%87%91%E9%A1%8D%E9%82%8A%E7%95%8C%E5%80%BC3&amp;timestamp=20200831085935&amp;transmode=&amp;checksum=861513481ed59b5f1b04c645b2448728e4bc96ec4c888bd1e0351a6bb6d9c2d6
+
+請求返回值：
+{
+    "amount": "200",
+    "bankid": "007",
+    "duedate": "20200930085935",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085935",
+    "paymentnumber": 25333,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000594944"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt16.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt16.3')" >
+        pass</a>
+
+    <div id='div_pt16.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt16.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt16.3: atm_金額邊界值3測試開始前準備
+duration:0.36948108673095703
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=51&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090030&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090030&amp;paymemo=20200831090030&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831090030&amp;transmode=&amp;checksum=0e1f02cc2c65578388587e10087821965e2b70cedb438b7aba068859dfee82df
+
+請求返回值：
+{
+    "amount": "51",
+    "bankid": "007",
+    "duedate": "20200930090030",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090030",
+    "paymentnumber": 25350,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000994992"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_16</td>
+    <td>atm_金額邊界值4</td>
+    <td>1.625</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c17',3)">Detail</a></td>
+</tr>
+
+<tr id='pt17.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt17.1')" >
+        pass</a>
+
+    <div id='div_pt17.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt17.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt17.1: atm_金額邊界值4測試開始前準備
+duration:0.265561580657959
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=50&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085855&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085855&amp;paymemo=20200831085855&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085855&amp;transmode=&amp;checksum=0e03d43f6b4b5690f3c4730bf3c533ee8da4f77ddf1ebb848e14048b1d3d38fd
+
+請求返回值：
+{
+    "amount": "50",
+    "bankid": "007",
+    "duedate": "20200930085855",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085855",
+    "paymentnumber": 25318,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000194909"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt17.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt17.2')" >
+        pass</a>
+
+    <div id='div_pt17.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt17.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt17.2: atm_金額邊界值4測試開始前準備
+duration:1.1756188869476318
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=30&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085936&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085936&amp;paymemo=20200831085936&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=atm_%E9%87%91%E9%A1%8D%E9%82%8A%E7%95%8C%E5%80%BC4&amp;timestamp=20200831085936&amp;transmode=&amp;checksum=0184852081c0e1989c1a6afbfea44b6275a3e353d4f27675694a4b0a56e7e194
+
+請求返回值：
+{
+    "amount": "30",
+    "bankid": "007",
+    "duedate": "20200930085936",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085936",
+    "paymentnumber": 25334,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000994950"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt17.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt17.3')" >
+        pass</a>
+
+    <div id='div_pt17.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt17.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt17.3: atm_金額邊界值4測試開始前準備
+duration:0.385547399520874
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=50&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090031&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090031&amp;paymemo=20200831090031&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831090031&amp;transmode=&amp;checksum=a766ec51588c2c975a4136b9fa32a565a7ce69bac837ec817ce9e2c530101b77
+
+請求返回值：
+{
+    "amount": "50",
+    "bankid": "007",
+    "duedate": "20200930090031",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090031",
+    "paymentnumber": 25351,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "41038000095007"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_17</td>
+    <td>atm_金額邊界值_小於交易金額</td>
+    <td>1.134</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c18',3)">Detail</a></td>
+</tr>
+
+<tr id='pt18.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.1')" >
+        pass</a>
+
+    <div id='div_pt18.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt18.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt18.1: atm_金額邊界值_小於交易金額測試開始前準備
+duration:0.10934853553771973
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=49&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085856&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085856&amp;paymemo=20200831085856&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085856&amp;transmode=&amp;checksum=23317bfb910a114ab9e43d3f73084e3718e5e7489536f1c2fdaa7dde809cb704
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "交易金額過低"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.2')" >
+        pass</a>
+
+    <div id='div_pt18.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt18.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt18.2: atm_金額邊界值_小於交易金額測試開始前準備
+duration:0.11594748497009277
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=29&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085938&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085938&amp;paymemo=20200831085938&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=atm_%E9%87%91%E9%A1%8D%E9%82%8A%E7%95%8C%E5%80%BC_%E5%B0%8F%E6%96%BC%E4%BA%A4%E6%98%93%E9%87%91%E9%A1%8D&amp;timestamp=20200831085938&amp;transmode=&amp;checksum=95d0e7bfa9f77e371233beefaffd30849ad88f24bb1f5a8656e3587d9851d50e
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "交易金額過低"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.3')" >
+        pass</a>
+
+    <div id='div_pt18.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt18.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt18.3: atm_金額邊界值_小於交易金額測試開始前準備
+duration:0.14850091934204102
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=49&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090033&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090033&amp;paymemo=20200831090033&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831090033&amp;transmode=&amp;checksum=f356d27c69cc889de373c20a586a85869febc8c3620080f51f348a7744ebac23
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "交易金額過低"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_18</td>
+    <td>atm_bankid_009</td>
+    <td>1.360</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c19',3)">Detail</a></td>
+</tr>
+
+<tr id='pt19.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt19.1')" >
+        pass</a>
+
+    <div id='div_pt19.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt19.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt19.1: atm_bankid_009測試開始前準備
+duration:0.3905336856842041
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=009&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085857&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085857&amp;paymemo=20200831085857&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085857&amp;transmode=&amp;checksum=88396286266db2ddf7c7a615c77098b168abc33ca0016e71e0c8f1e9341b67cc
+
+請求返回值：
+{
+    "amount": "10000",
+    "bankid": "009",
+    "duedate": "20200930085857",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085857",
+    "paymentnumber": 25319,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "63242000903172"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt19.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt19.2')" >
+        pass</a>
+
+    <div id='div_pt19.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt19.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt19.2: atm_bankid_009測試開始前準備
+duration:0.31459999084472656
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=202&amp;bankid=009&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085939&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085939&amp;paymemo=20200831085939&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=atm_bankid_009&amp;timestamp=20200831085939&amp;transmode=&amp;checksum=3ce20a0267f843f077c3d43fb5603265dfa4c290f66557d8bd16099e1ada50f5
+
+請求返回值：
+{
+    "amount": "202",
+    "bankid": "009",
+    "duedate": "20200930085939",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085939",
+    "paymentnumber": 25335,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "63242000303175"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt19.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt19.3')" >
+        pass</a>
+
+    <div id='div_pt19.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt19.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt19.3: atm_bankid_009測試開始前準備
+duration:0.3433506488800049
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=009&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090034&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090034&amp;paymemo=20200831090034&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831090034&amp;transmode=&amp;checksum=9b79afbd9a1a0c6dc6ddf7aa1915edf9d23ec8c95ad00d72405274d95b4847bc
+
+請求返回值：
+{
+    "amount": "10000",
+    "bankid": "009",
+    "duedate": "20200930090034",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090034",
+    "paymentnumber": 25352,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "63242000003179"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_19</td>
+    <td>atm_bankid_013</td>
+    <td>1.368</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c20',3)">Detail</a></td>
+</tr>
+
+<tr id='pt20.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt20.1')" >
+        pass</a>
+
+    <div id='div_pt20.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt20.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt20.1: atm_bankid_013測試開始前準備
+duration:0.43739748001098633
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=013&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085859&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085859&amp;paymemo=20200831085859&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085859&amp;transmode=&amp;checksum=6fe4bef39df6e6d57959ceb690495c25bd05d9a208893c081508fc3d8a7f243d
+
+請求返回值：
+{
+    "amount": "10000",
+    "bankid": "013",
+    "duedate": "20200930085859",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085859",
+    "paymentnumber": 25320,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "40170000826599"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt20.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt20.2')" >
+        pass</a>
+
+    <div id='div_pt20.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt20.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt20.2: atm_bankid_013測試開始前準備
+duration:0.2712838649749756
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=203&amp;bankid=013&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085941&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085941&amp;paymemo=20200831085941&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=atm_bankid_013&amp;timestamp=20200831085941&amp;transmode=&amp;checksum=53a88e9c3671d4c000bf444d8c1b538f895e236ec1bde6f09e4698be0154d579
+
+請求返回值：
+{
+    "amount": "203",
+    "bankid": "013",
+    "duedate": "20200930085941",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085941",
+    "paymentnumber": 25336,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "40170000426607"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt20.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt20.3')" >
+        pass</a>
+
+    <div id='div_pt20.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt20.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt20.3: atm_bankid_013測試開始前準備
+duration:0.36281871795654297
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=013&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090035&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090035&amp;paymemo=20200831090035&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831090035&amp;transmode=&amp;checksum=c4fa0a986bc599c3f6cf4ad97d79f4ad70a0e640a4a44071da0a9a61c8efd682
+
+請求返回值：
+{
+    "amount": "10000",
+    "bankid": "013",
+    "duedate": "20200930090035",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090035",
+    "paymentnumber": 25353,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "40170000526615"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_2</td>
+    <td>mmk_lifeet</td>
+    <td>1.340</td>
+    <td>2</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c21',2)">Detail</a></td>
+</tr>
+
+<tr id='pt21.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt21.1')" >
+        pass</a>
+
+    <div id='div_pt21.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt21.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt21.1: mmk_lifeet測試開始前準備
+duration:0.31239843368530273
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085900&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085900&amp;paymemo=20200831085900-api&amp;paymentmode=lifeet_2345&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085900&amp;transmode=&amp;checksum=e1220af5d529cdef7e52e0f9624547d8b5f6a64c848ffc7ede4aeffc470ca66a
+
+請求返回值：
+{
+    "amount": "10000",
+    "duedate": "20200930085900",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085900",
+    "paycode": "EST00090136468",
+    "paymentnumber": 131557,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt21.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt21.2')" >
+        pass</a>
+
+    <div id='div_pt21.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt21.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt21.2: mmk_lifeet測試開始前準備
+duration:0.3529493808746338
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090010&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090010&amp;paymemo=20200831090010-api&amp;paymentmode=lifeet_2345&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090010&amp;transmode=&amp;checksum=1c3055acfd45fb93113807b570f6b659a5ac29654a620a74e54198935dde2e37
+
+請求返回值：
+{
+    "amount": "10000",
+    "duedate": "20200930090010",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090010",
+    "paycode": "EST00040136681",
+    "paymentnumber": 131570,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_20</td>
+    <td>atm_bankid_807</td>
+    <td>1.399</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c22',3)">Detail</a></td>
+</tr>
+
+<tr id='pt22.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt22.1')" >
+        pass</a>
+
+    <div id='div_pt22.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt22.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt22.1: atm_bankid_807測試開始前準備
+duration:0.48423099517822266
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=807&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085902&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085902&amp;paymemo=20200831085902&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085902&amp;transmode=&amp;checksum=efbd84f3edd95f1ecad72a9ca07daa2a0ed71e8e945ba723d46219e815a29138
+
+請求返回值：
+{
+    "amount": "10000",
+    "bankid": "807",
+    "duedate": "20200930085902",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085902",
+    "paymentnumber": 25321,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "00831085906877"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt22.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt22.2')" >
+        pass</a>
+
+    <div id='div_pt22.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt22.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt22.2: atm_bankid_807測試開始前準備
+duration:0.28943562507629395
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=204&amp;bankid=807&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085942&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085942&amp;paymemo=20200831085942&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=atm_bankid_807&amp;timestamp=20200831085942&amp;transmode=&amp;checksum=024567d9374c6bacf6585ed71b10a8679c44436b931fa0d0455cb54f512109cb
+
+請求返回值：
+{
+    "amount": "204",
+    "bankid": "807",
+    "duedate": "20200930085942",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085942",
+    "paymentnumber": 25337,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "00831085947728"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt22.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt22.3')" >
+        pass</a>
+
+    <div id='div_pt22.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt22.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt22.3: atm_bankid_807測試開始前準備
+duration:0.4030735492706299
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=807&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090036&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090036&amp;paymemo=20200831090036&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831090036&amp;transmode=&amp;checksum=5c65cc115659e252c0368a016db529d0b93187cc10a4e5e2ad5847d92460281b
+
+請求返回值：
+{
+    "amount": "10000",
+    "bankid": "807",
+    "duedate": "20200930090036",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090036",
+    "paymentnumber": 25354,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "00831090041174"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_21</td>
+    <td>atm_bankid_812</td>
+    <td>1.375</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c23',3)">Detail</a></td>
+</tr>
+
+<tr id='pt23.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt23.1')" >
+        pass</a>
+
+    <div id='div_pt23.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt23.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt23.1: atm_bankid_812測試開始前準備
+duration:0.4061238765716553
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=812&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085903&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085903&amp;paymemo=20200831085903&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085903&amp;transmode=&amp;checksum=e2284ddbd6b8004e9c33658bc16650cb1c75e86bc33758067dec4fcfb32f1962
+
+請求返回值：
+{
+    "amount": "10000",
+    "bankid": "812",
+    "duedate": "20200930085903",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085903",
+    "paymentnumber": 25322,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "81190000192743"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt23.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt23.2')" >
+        pass</a>
+
+    <div id='div_pt23.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt23.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt23.2: atm_bankid_812測試開始前準備
+duration:0.40228986740112305
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=205&amp;bankid=812&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085943&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085943&amp;paymemo=20200831085943&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=atm_bankid_812&amp;timestamp=20200831085943&amp;transmode=&amp;checksum=abee4c94ed0b6f44f1316a9d3869f8597fb9e06b2950169293bd4aaf9d816436
+
+請求返回值：
+{
+    "amount": "205",
+    "bankid": "812",
+    "duedate": "20200930085943",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085943",
+    "paymentnumber": 25338,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "81190000392749"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt23.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt23.3')" >
+        pass</a>
+
+    <div id='div_pt23.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt23.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt23.3: atm_bankid_812測試開始前準備
+duration:0.2810196876525879
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=812&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090038&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090038&amp;paymemo=20200831090038&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831090038&amp;transmode=&amp;checksum=c947f67ac02a70f0fbef562aec1d2fae31e25f2b0175e72252d3e5f0e55dc718
+
+請求返回值：
+{
+    "amount": "10000",
+    "bankid": "812",
+    "duedate": "20200930090038",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090038",
+    "paymentnumber": 25355,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "81190000592741"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_22</td>
+    <td>atm_動態虛擬帳號</td>
+    <td>1.308</td>
+    <td>2</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c24',2)">Detail</a></td>
+</tr>
+
+<tr id='pt24.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt24.1')" >
+        pass</a>
+
+    <div id='div_pt24.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt24.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt24.1: atm_動態虛擬帳號測試開始前準備
+duration:0.29680395126342773
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=100&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085904&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085904&amp;paymemo=20200831085904&amp;paymentmode=dva&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085904&amp;transmode=&amp;checksum=86b92d89a5682f1666580a1bc87348b8dd27f0ced66f844f56f50ac93e149543
+
+請求返回值：
+{
+    "amount": "100",
+    "duedate": "20200930085904",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085904",
+    "paymentnumber": 25323,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt24.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt24.2')" >
+        pass</a>
+
+    <div id='div_pt24.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt24.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt24.2: atm_動態虛擬帳號測試開始前準備
+duration:0.2981150150299072
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=100&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090039&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090039&amp;paymemo=20200831090039&amp;paymentmode=dva&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831090039&amp;transmode=&amp;checksum=404ab465cf9fe2bb86fe9c6a5b28fb317c6632caff6709ff6ab8770d80ab861c
+
+請求返回值：
+{
+    "amount": "100",
+    "duedate": "20200930090039",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090039",
+    "paymentnumber": 25356,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_23</td>
+    <td>幣別為空</td>
+    <td>1.310</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c25',3)">Detail</a></td>
+</tr>
+
+<tr id='pt25.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt25.1')" >
+        pass</a>
+
+    <div id='div_pt25.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt25.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt25.1: 幣別為空測試開始前準備
+duration:0.2655923366546631
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10055&amp;bankid=009&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=&amp;duedate=20200930085906&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085906&amp;paymemo=20200831085906&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085906&amp;transmode=&amp;checksum=6e18c81de0da145b1d3bd347ec8e5a2ac5e6ed923f8ae8302f18ac03356256b9
+
+請求返回值：
+{
+    "amount": "10055",
+    "bankid": "009",
+    "duedate": "20200930085906",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085906",
+    "paymentnumber": 25324,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "63242000003173"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt25.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt25.2')" >
+        pass</a>
+
+    <div id='div_pt25.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt25.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt25.2: 幣別為空測試開始前準備
+duration:0.3040347099304199
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=100&amp;bankid=009&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=&amp;duedate=20200930085953&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085953&amp;paymemo=20200831085953&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=test&amp;timestamp=20200831085953&amp;transmode=&amp;checksum=4b5a034f8b22fef1ab8d80a504f62ea26ce41a0a017d373c602c7d2a25464070
+
+請求返回值：
+{
+    "amount": "100",
+    "bankid": "009",
+    "duedate": "20200930085953",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085953",
+    "paymentnumber": 25344,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "63242000503177"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt25.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt25.3')" >
+        pass</a>
+
+    <div id='div_pt25.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt25.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt25.3: 幣別為空測試開始前準備
+duration:0.3382413387298584
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10055&amp;bankid=009&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=&amp;duedate=20200930090040&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090040&amp;paymemo=20200831090040&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831090040&amp;transmode=&amp;checksum=2fbdddc1df5e0951d7875d7df68981be061ae08c7def7c35fa36f22e069f908b
+
+請求返回值：
+{
+    "amount": "10055",
+    "bankid": "009",
+    "duedate": "20200930090040",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090040",
+    "paymentnumber": 25357,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "63242000603180"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_24</td>
+    <td>時效已超過</td>
+    <td>1.088</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c26',3)">Detail</a></td>
+</tr>
+
+<tr id='pt26.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt26.1')" >
+        pass</a>
+
+    <div id='div_pt26.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt26.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt26.1: 時效已超過測試開始前準備
+duration:0.04686260223388672
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=200&amp;bankid=&amp;cardcvc2=057&amp;cardexpiry=203003&amp;cardnumber=4682358976116102&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200831085907&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085907&amp;paymemo=20200831085907&amp;paymentmode=&amp;paymenttype=creditcard&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831085907&amp;transmode=N&amp;checksum=442ff8784de9588c8b835bf3ea0ddc4a2ef5b84c197fd1d4a13ebc386d67f58b
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "時效已超過! (duedate=20200831085907)"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt26.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt26.2')" >
+        pass</a>
+
+    <div id='div_pt26.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt26.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt26.2: 時效已超過測試開始前準備
+duration:0.062487125396728516
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=200&amp;bankid=&amp;cardcvc2=057&amp;cardexpiry=203003&amp;cardnumber=4682358976116102&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200831085952&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085952&amp;paymemo=20200831085952&amp;paymentmode=&amp;paymenttype=creditcard&amp;payphone=0917001177&amp;paytitle=test&amp;timestamp=20200831085952&amp;transmode=N&amp;checksum=6594e39d11b9d1be9699cb5b46c498142160b90962c57e7446366ac03f9a2006
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "時效已超過! (duedate=20200831085952)"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt26.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt26.3')" >
+        pass</a>
+
+    <div id='div_pt26.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt26.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt26.3: 時效已超過測試開始前準備
+duration:0.11828041076660156
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=200&amp;bankid=&amp;cardcvc2=057&amp;cardexpiry=203003&amp;cardnumber=4682358976116102&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200831090042&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090042&amp;paymemo=20200831090042&amp;paymentmode=&amp;paymenttype=creditcard&amp;payphone=0999999999&amp;paytitle=test&amp;timestamp=20200831090042&amp;transmode=N&amp;checksum=17977dabd876392fa29807627f1623f6990dca0b860dff69df08a19427786b37
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "時效已超過! (duedate=20200831090042)"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_25</td>
+    <td>webatm_807</td>
+    <td>1.434</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c27',3)">Detail</a></td>
+</tr>
+
+<tr id='pt27.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt27.1')" >
+        pass</a>
+
+    <div id='div_pt27.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt27.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt27.1: webatm_807測試開始前準備
+duration:0.4686393737792969
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=807&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085908&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085908&amp;paymemo=20200831085908-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085908&amp;transmode=&amp;checksum=34dfa24944d1d7f77b1e3aa01ad69a655690bd8b32b3261b18b7e9002ae9bde4
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085908",
+    "paymentnumber": 25325,
+    "rc": "1",
+    "redirect_data": {},
+    "redirect_encode": "utf-8",
+    "redirect_method": "get",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/sinopac_vap_notice.jsp?TD=NA005400068176&amp;TK=0a630046-c3a8-49c5-9760-307a25009725",
+    "virtualaccount": "00831085913114"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt27.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt27.2')" >
+        pass</a>
+
+    <div id='div_pt27.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt27.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt27.2: webatm_807測試開始前準備
+duration:0.3564436435699463
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=301&amp;bankid=807&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085946&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085946&amp;paymemo=20200831085946-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0917001177&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085946&amp;transmode=&amp;checksum=5218cabcf65876ad05d752c80dc780c1a8a4af240ef6fb5b6bf2f5ef4c8cee7e
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085946",
+    "paymentnumber": 25339,
+    "rc": "1",
+    "redirect_data": {},
+    "redirect_encode": "utf-8",
+    "redirect_method": "get",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/sinopac_vap_notice.jsp?TD=NA005400068204&amp;TK=0a630046-c3a8-49c5-9760-307a25009725",
+    "virtualaccount": "00831085951588"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt27.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt27.3')" >
+        pass</a>
+
+    <div id='div_pt27.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt27.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt27.3: webatm_807測試開始前準備
+duration:0.44459962844848633
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=807&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090044&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090044&amp;paymemo=20200831090044-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090044&amp;transmode=&amp;checksum=cf12036436808b30650bb6f8ea52ec09027c31cf17b2194329db1a762d99bf24
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090044",
+    "paymentnumber": 25358,
+    "rc": "1",
+    "redirect_data": {},
+    "redirect_encode": "utf-8",
+    "redirect_method": "get",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/sinopac_vap_notice.jsp?TD=NA005400068240&amp;TK=0a630046-c3a8-49c5-9760-307a25009725",
+    "virtualaccount": "00831090049993"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_26</td>
+    <td>webatm_009</td>
+    <td>1.317</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c28',3)">Detail</a></td>
+</tr>
+
+<tr id='pt28.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt28.1')" >
+        pass</a>
+
+    <div id='div_pt28.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt28.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt28.1: webatm_009測試開始前準備
+duration:0.3124575614929199
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=009&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085910&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085910&amp;paymemo=20200831085910-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085910&amp;transmode=&amp;checksum=2197cc2c8fef1faea5d3a92641967b9b508829c8b59f4cacd9b23b26078b2418
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085910",
+    "paymentnumber": 25326,
+    "rc": "1",
+    "redirect_data": {
+        "Amt": "10000",
+        "OrderNum": "63242000603174",
+        "Url": "https://sit.1177tech.com.tw/1177payment/vap/b009/webatm_response.jsp"
+    },
+    "redirect_encode": "utf-8",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/vap/chb/webatm",
+    "virtualaccount": "63242000603174"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt28.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt28.2')" >
+        pass</a>
+
+    <div id='div_pt28.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt28.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt28.2: webatm_009測試開始前準備
+duration:0.3006477355957031
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=302&amp;bankid=009&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085947&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085947&amp;paymemo=20200831085947-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0917001177&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085947&amp;transmode=&amp;checksum=53a20ee1f38398f28fa85f1fe70b8fb925c5731381d03be2ae01b94117a5c4d1
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085947",
+    "paymentnumber": 25340,
+    "rc": "1",
+    "redirect_data": {
+        "Amt": "302",
+        "OrderNum": "63242000903176",
+        "Url": "https://sit.1177tech.com.tw/1177payment/vap/b009/webatm_response.jsp"
+    },
+    "redirect_encode": "utf-8",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/vap/chb/webatm",
+    "virtualaccount": "63242000903176"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt28.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt28.3')" >
+        pass</a>
+
+    <div id='div_pt28.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt28.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt28.3: webatm_009測試開始前準備
+duration:0.28481531143188477
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=009&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090046&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090046&amp;paymemo=20200831090046-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090046&amp;transmode=&amp;checksum=9ddf5fc5539d5ba722220d3b8f64f2125cc910e9390934d0a6943d641c297497
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090046",
+    "paymentnumber": 25359,
+    "rc": "1",
+    "redirect_data": {
+        "Amt": "10000",
+        "OrderNum": "63242000903181",
+        "Url": "https://sit.1177tech.com.tw/1177payment/vap/b009/webatm_response.jsp"
+    },
+    "redirect_encode": "utf-8",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/vap/chb/webatm",
+    "virtualaccount": "63242000903181"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_27</td>
+    <td>webatm_812</td>
+    <td>1.361</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c29',3)">Detail</a></td>
+</tr>
+
+<tr id='pt29.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt29.1')" >
+        pass</a>
+
+    <div id='div_pt29.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt29.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt29.1: webatm_812測試開始前準備
+duration:0.34287381172180176
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=812&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085911&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085911&amp;paymemo=20200831085911-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085911&amp;transmode=&amp;checksum=ac42068645ee879b3f5d21fa3e392c06f5af938bd52eae5cd3c1b8b52a72e266
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085911",
+    "paymentnumber": 25327,
+    "rc": "1",
+    "redirect_data": {
+        "CorpCode": "1177pay_TSBeATMNGP",
+        "Ext1": "812",
+        "Ext2": "81190000292740",
+        "Ext3": "10000",
+        "Ext4": "ec2e990b934dde55cb87300629cedfc21b15cd28bbcf77d8bbdc55359d7689da",
+        "Ext5": "MMK_API_TEST_測試"
+    },
+    "redirect_encode": "big5",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/vap/b812/webatm",
+    "virtualaccount": "81190000292740"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt29.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt29.2')" >
+        pass</a>
+
+    <div id='div_pt29.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt29.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt29.2: webatm_812測試開始前準備
+duration:0.32238054275512695
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=303&amp;bankid=812&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085948&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085948&amp;paymemo=20200831085948-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0917001177&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085948&amp;transmode=&amp;checksum=abfec78f326b50df2a0d96999b1f46082e5ec1ec98df351dd4a82f67821fe413
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085948",
+    "paymentnumber": 25341,
+    "rc": "1",
+    "redirect_data": {
+        "CorpCode": "1177pay_TSBeATMNGP",
+        "Ext1": "812",
+        "Ext2": "81190000492743",
+        "Ext3": "303",
+        "Ext4": "65a699905c02619370bcf9207f5a477c3d67130ca71ec6f750e07fe8d510b084",
+        "Ext5": "MMK_API_TEST_測試"
+    },
+    "redirect_encode": "big5",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/vap/b812/webatm",
+    "virtualaccount": "81190000492743"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt29.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt29.3')" >
+        pass</a>
+
+    <div id='div_pt29.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt29.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt29.3: webatm_812測試開始前準備
+duration:0.38851308822631836
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=812&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090047&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090047&amp;paymemo=20200831090047-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090047&amp;transmode=&amp;checksum=a24f2799266500b7a5240e82c7c22aa8a5d0dbb9282f27476b65ad6c8a919fb4
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090047",
+    "paymentnumber": 25360,
+    "rc": "1",
+    "redirect_data": {
+        "CorpCode": "1177pay_TSBeATMNGP",
+        "Ext1": "812",
+        "Ext2": "81190000692748",
+        "Ext3": "10000",
+        "Ext4": "a512db2741cd20693e4b16f19891e72b9ff12cead72761fc5e92d2aaf34740c1",
+        "Ext5": "MMK_API_TEST_測試"
+    },
+    "redirect_encode": "big5",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/vap/b812/webatm",
+    "virtualaccount": "81190000692748"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_28</td>
+    <td>webatm_013</td>
+    <td>1.351</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c30',3)">Detail</a></td>
+</tr>
+
+<tr id='pt30.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt30.1')" >
+        pass</a>
+
+    <div id='div_pt30.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt30.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt30.1: webatm_013測試開始前準備
+duration:0.3206756114959717
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=013&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085912&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085912&amp;paymemo=20200831085912-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085912&amp;transmode=&amp;checksum=05ee3c196f37a77c8a034556d77cac5bcdf59669454572536937250ca39b343c
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085912",
+    "paymentnumber": 25328,
+    "rc": "1",
+    "redirect_data": {
+        "enc_string": "0D8C2F139E40A4E2D032DBF376CEC9E8074F83F5F042D6D9A2442FC66C50EA79619EA4A4AA644F2A0E591A594B6D46AE0255C7EEED9B173E3D7F2E2B6A31FD8A10A2D0547B9F03F32CE66EC1C47EB71DA4FFF0613152DEED8769421BE0E257F9BAC2764D6B875FBBD66B32D16E5549420DD4ED2B67C43AF729EF7AB2DFF9C18B7C504F5A9825C1DDFB7A6CBB19E3C0B586E2CBDAC17CCBF8BC558F9004F441B1384C2C96D5F9475EF080AD8605F8FCB55B68BE1AB7390170248B6A44E1F1AE4CBE59C716442D746D509C3FD4C1CAE9FE1E1EA79C72B136CCCEAE380F7E7DF8ACC4E8ABF195F5A8058E30E700205E6D3398D520C40411F93AB328D2AF4076578527621F484A81971F594A3ED42EE8BD4CCFE7F8D685612383DA0DCACA5325888357933E654CCE9FA0925AFC12EE2127D81ECB6E992EFAE56207A3AF28AE594ACAE310B167DE4CC681131CD4FFBA2B1494F28CFFCB7DF5EB67A35EF357D676A3094E75B65BE4AB94EA4ACC0586329004956D6EC278D87F4A8CB5DD0ACCBD360BB64958EC23836FC4164B169453A062BD65"
+    },
+    "redirect_encode": "utf-8",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/1177payment/vap/b013/Checkout.jsp",
+    "virtualaccount": "40160930000010"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt30.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt30.2')" >
+        pass</a>
+
+    <div id='div_pt30.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt30.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt30.2: webatm_013測試開始前準備
+duration:0.3287796974182129
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=304&amp;bankid=013&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085950&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085950&amp;paymemo=20200831085950-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0917001177&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085950&amp;transmode=&amp;checksum=ed8f61c67267804f517ab52abb4de8e3be93d3fcd4194e4199e04d8a4e2eb352
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085950",
+    "paymentnumber": 25342,
+    "rc": "1",
+    "redirect_data": {
+        "enc_string": "0D8C2F139E40A4E2D032DBF376CEC9E8074F83F5F042D6D9A2442FC66C50EA79619EA4A4AA644F2A0E591A594B6D46AEBA835F3DCB41D8CE04C0783B03188D7F8D70B70120F3AAC8160ABA454251FA4CF6FB1E86CCB948ADA8B4F0B6B45DB745C2CF78B0CF67A0808FF4E3EA86347840126CF1B0167E7C28E417B6889C53851132A180FF2427BAB04BF2B1EAC7DE9F0CB69220B802FF0F92EBDCE73D2E55EC848BD52FEC7B5D1C5C482CBAEECF4E0FFF1E92527FE7E5EEA8E2C6D9E1B61FC99C22D5FD00EBE0CE824750BB4FF45DDA1A30AB0EA6EA0043F8B18492E3405645283A7C1321E133144971B902D03D7E0021CD2D335F2590CE78D5F394729097DDD800096B4E093A6C7135CA24C5E9A36F42A6CDF0014C1299DFDEBEC40CE15C6527E411AC2ADE40B8567E3B49A72475D5AA5C6F4A5345A24D68A2B6BA2A76506ED2D0B509118F23243D4387184CB7050FBAB7CE48AB36B4C9BD8BDE2290B22CA6FB0ECF534A3E4CEF003B9AF8E184B2773086DF14162A8FEF1BBA9A59B3D60472CB"
+    },
+    "redirect_encode": "utf-8",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/1177payment/vap/b013/Checkout.jsp",
+    "virtualaccount": "40160930000025"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt30.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt30.3')" >
+        pass</a>
+
+    <div id='div_pt30.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt30.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt30.3: webatm_013測試開始前準備
+duration:0.3993875980377197
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=013&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090048&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090048&amp;paymemo=20200831090048-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090048&amp;transmode=&amp;checksum=2805a92760ea2d745e9218b913c44722904e57d807c180d78de5c3daf4d03318
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090048",
+    "paymentnumber": 25361,
+    "rc": "1",
+    "redirect_data": {
+        "enc_string": "0D8C2F139E40A4E2D032DBF376CEC9E8074F83F5F042D6D9A2442FC66C50EA79619EA4A4AA644F2A0E591A594B6D46AE0255C7EEED9B173E3D7F2E2B6A31FD8A10A2D0547B9F03F32CE66EC1C47EB71DA4FFF0613152DEED8769421BE0E257F93240B01FF54F17F12AC456188C66C4E54DF36162476DF33B75DE72BEF7B0C491D0D8973EE47D339A03A11DEEDEC73EA5C5A9FD93DB302F7D08141BC2CDB7F42A0D9226FB3FB663A08C97336FAB1D17245B68BE1AB7390170248B6A44E1F1AE4CBE59C716442D746D509C3FD4C1CAE9FE1E1EA79C72B136CCCEAE380F7E7DF8ACC4E8ABF195F5A8058E30E700205E6D3398D520C40411F93AB328D2AF40765785C08318D6B8558FF2E2885A20E2FFBA23CFE7F8D685612383DA0DCACA5325888357933E654CCE9FA0925AFC12EE2127D81ECB6E992EFAE56207A3AF28AE594ACAE310B167DE4CC681131CD4FFBA2B1494F28CFFCB7DF5EB67A35EF357D676A3094E75B65BE4AB94EA4ACC0586329004956D6EC278D87F4A8CB5DD0ACCBD360BB64958EC23836FC4164B169453A062BD65"
+    },
+    "redirect_encode": "utf-8",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/1177payment/vap/b013/Checkout.jsp",
+    "virtualaccount": "40160930000036"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_3</td>
+    <td>mmk_三段條碼</td>
+    <td>1.358</td>
+    <td>2</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c31',2)">Detail</a></td>
+</tr>
+
+<tr id='pt31.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt31.1')" >
+        pass</a>
+
+    <div id='div_pt31.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt31.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt31.1: mmk_三段條碼測試開始前準備
+duration:0.3231360912322998
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=100&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085915&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085915&amp;paymemo=20200831085915-api&amp;paymentmode=cvsbarcodes&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085915&amp;transmode=&amp;checksum=bbe4108b43026d25dbd5cba7424c0fab02e6f722fa195121022bee8d405395ad
+
+請求返回值：
+{
+    "amount": "100",
+    "duedate": "20200930085915",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085915",
+    "paymentnumber": 131558,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt31.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt31.2')" >
+        pass</a>
+
+    <div id='div_pt31.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt31.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt31.2: mmk_三段條碼測試開始前準備
+duration:0.3857245445251465
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=100&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090011&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090011&amp;paymemo=20200831090011-api&amp;paymentmode=cvsbarcodes&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090011&amp;transmode=&amp;checksum=10f32926a6c2d1c07eba7cc3ebd747e767a97ea9f6526dacb658f2291d370fcb
+
+請求返回值：
+{
+    "amount": "100",
+    "duedate": "20200930090011",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090011",
+    "paymentnumber": 131571,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_30</td>
+    <td>mmk_指定商店_ibon</td>
+    <td>1.322</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c32',1)">Detail</a></td>
+</tr>
+
+<tr id='pt32.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt32.1')" >
+        pass</a>
+
+    <div id='div_pt32.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt32.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt32.1: mmk_指定商店_ibon測試開始前準備
+duration:0.32167911529541016
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=101&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085916&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=I20200831085916&amp;paymemo=20200831085916-api&amp;paymentmode=ibon_555555&amp;paymenttype=mmk&amp;payphone=0917001177&amp;paytitle=mmk_%E6%8C%87%E5%AE%9A%E5%95%86%E5%BA%97_ibon&amp;timestamp=20200831085916&amp;transmode=&amp;checksum=0cbfbedc5069df24056a3add3ddd0fde724855d5b05b2fd82c4250196c7a29c6
+
+請求返回值：
+{
+    "amount": "101",
+    "duedate": "20200930085916",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "I20200831085916",
+    "paycode": "EST00030136270",
+    "paymentnumber": 131559,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_31</td>
+    <td>mmk_指定商店_famiport</td>
+    <td>1.342</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c33',1)">Detail</a></td>
+</tr>
+
+<tr id='pt33.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt33.1')" >
+        pass</a>
+
+    <div id='div_pt33.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt33.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt33.1: mmk_指定商店_famiport測試開始前準備
+duration:0.34108853340148926
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=102&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085918&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=F20200831085918&amp;paymemo=20200831085918-api&amp;paymentmode=famiport_123456&amp;paymenttype=mmk&amp;payphone=0917001177&amp;paytitle=mmk_%E6%8C%87%E5%AE%9A%E5%95%86%E5%BA%97_famiport&amp;timestamp=20200831085918&amp;transmode=&amp;checksum=fabf1f44178153d068cf23bbca89825ce7c74422901daec1de80e6517d5c6b04
+
+請求返回值：
+{
+    "amount": "102",
+    "duedate": "20200930085918",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "F20200831085918",
+    "paycode": "EST00040136171",
+    "paymentnumber": 131560,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_32</td>
+    <td>mmk_指定商店_lifeet</td>
+    <td>1.369</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c34',1)">Detail</a></td>
+</tr>
+
+<tr id='pt34.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt34.1')" >
+        pass</a>
+
+    <div id='div_pt34.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt34.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt34.1: mmk_指定商店_lifeet測試開始前準備
+duration:0.36875414848327637
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=103&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085919&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=L20200831085919&amp;paymemo=20200831085919-api&amp;paymentmode=lifeet_2345&amp;paymenttype=mmk&amp;payphone=0917001177&amp;paytitle=mmk_%E6%8C%87%E5%AE%9A%E5%95%86%E5%BA%97_lifeet&amp;timestamp=20200831085919&amp;transmode=&amp;checksum=6c8ce286401fb1fbd8b9f5feda6dc75fd93a3fa0fe5e14f6eb3d8b5302fddf38
+
+請求返回值：
+{
+    "amount": "103",
+    "duedate": "20200930085919",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "L20200831085919",
+    "paycode": "EST00000136772",
+    "paymentnumber": 131561,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_33</td>
+    <td>mmk_指定商店_lifeet_不可繳款</td>
+    <td>1.340</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c35',1)">Detail</a></td>
+</tr>
+
+<tr id='pt35.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt35.1')" >
+        pass</a>
+
+    <div id='div_pt35.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt35.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt35.1: mmk_指定商店_lifeet_不可繳款測試開始前準備
+duration:0.33296823501586914
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=104&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085920&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085920&amp;paymemo=20200831085920-api&amp;paymentmode=lifeet_1234&amp;paymenttype=mmk&amp;payphone=0917001177&amp;paytitle=mmk_%E6%8C%87%E5%AE%9A%E5%95%86%E5%BA%97_lifeet&amp;timestamp=20200831085920&amp;transmode=&amp;checksum=2c15043002abfa4478a47f67dfa5a052a123e52538759f99acbf816eb6eeb22a
+
+請求返回值：
+{
+    "amount": "104",
+    "duedate": "20200930085920",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085920",
+    "paycode": "EST00050136573",
+    "paymentnumber": 131562,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_34</td>
+    <td>mmk_金額邊界值_大於交易金額</td>
+    <td>1.106</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c36',3)">Detail</a></td>
+</tr>
+
+<tr id='pt36.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt36.1')" >
+        pass</a>
+
+    <div id='div_pt36.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt36.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt36.1: mmk_金額邊界值_大於交易金額測試開始前準備
+duration:0.09029889106750488
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=20001&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085922&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085922&amp;paymemo=20200831085922-api&amp;paymentmode=&amp;paymenttype=mmk&amp;payphone=0917001177&amp;paytitle=mmk_%E9%87%91%E9%A1%8D%E9%82%8A%E7%95%8C%E5%80%BC_%E5%A4%A7%E6%96%BC%E4%BA%A4%E6%98%93%E9%87%91%E9%A1%8D&amp;timestamp=20200831085922&amp;transmode=&amp;checksum=85d739eef957afb10f8aa85e5bc159c0b0f73d8a6f1e75e75039a065cdf773f9
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "交易金額過高"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt36.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt36.2')" >
+        pass</a>
+
+    <div id='div_pt36.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt36.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt36.2: mmk_金額邊界值_大於交易金額測試開始前準備
+duration:0.09273982048034668
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=20001&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085945&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085945&amp;paymemo=20200831085945-api&amp;paymentmode=ibon_555555&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085945&amp;transmode=&amp;checksum=a3fefca079dad1902949bd27cf0967837dbd63a92197b2e321d8d6a359a80ff8
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "交易金額過高"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt36.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt36.3')" >
+        pass</a>
+
+    <div id='div_pt36.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt36.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt36.3: mmk_金額邊界值_大於交易金額測試開始前準備
+duration:0.12226700782775879
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=20001&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090015&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090015&amp;paymemo=20200831090015-api&amp;paymentmode=ibon_555555&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090015&amp;transmode=&amp;checksum=15ca0f395d7cf68db69737b3e7fddf00acf6aa56bfcc6d2fbf2127572055491b
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "交易金額過高"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_35</td>
+    <td>mmk_金額邊界值1</td>
+    <td>1.523</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c37',3)">Detail</a></td>
+</tr>
+
+<tr id='pt37.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt37.1')" >
+        pass</a>
+
+    <div id='div_pt37.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt37.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt37.1: mmk_金額邊界值1測試開始前準備
+duration:0.43501830101013184
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=20000&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085923&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085923&amp;paymemo=20200831085923-api&amp;paymentmode=&amp;paymenttype=mmk&amp;payphone=0917001177&amp;paytitle=mmk_%E9%87%91%E9%A1%8D%E9%82%8A%E7%95%8C%E5%80%BC1&amp;timestamp=20200831085923&amp;transmode=&amp;checksum=259bc76a95a504cdebeb832fa5389b59ac752a528767ddada9ba4de1c9b2f202
+
+請求返回值：
+{
+    "amount": "20000",
+    "duedate": "20200930085923",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085923",
+    "paycode": "EST00010136974",
+    "paymentnumber": 131563,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt37.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt37.2')" >
+        pass</a>
+
+    <div id='div_pt37.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt37.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt37.2: mmk_金額邊界值1測試開始前準備
+duration:0.7437648773193359
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=20000&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085959&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085959&amp;paymemo=20200831085959-api&amp;paymentmode=ibon_555555&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085959&amp;transmode=&amp;checksum=2d540713c973466c9247f6fca62e0d7c0b3f697a84b8d8d9830873f852ed98f9
+
+請求返回值：
+{
+    "amount": "20000",
+    "duedate": "20200930085959",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085959",
+    "paycode": "EST00040136379",
+    "paymentnumber": 131568,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt37.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt37.3')" >
+        pass</a>
+
+    <div id='div_pt37.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt37.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt37.3: mmk_金額邊界值1測試開始前準備
+duration:0.3468165397644043
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=20000&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090016&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090016&amp;paymemo=20200831090016-api&amp;paymentmode=ibon_555555&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090016&amp;transmode=&amp;checksum=666e352e69186cddde1eea40f53afd21d6ee72067696a74d2853c39bfd3eda50
+
+請求返回值：
+{
+    "amount": "20000",
+    "duedate": "20200930090016",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090016",
+    "paycode": "EST00040136484",
+    "paymentnumber": 131573,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_36</td>
+    <td>mmk_金額邊界值2</td>
+    <td>1.418</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c38',3)">Detail</a></td>
+</tr>
+
+<tr id='pt38.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt38.1')" >
+        pass</a>
+
+    <div id='div_pt38.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt38.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt38.1: mmk_金額邊界值2測試開始前準備
+duration:0.40462255477905273
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=1000&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085924&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085924&amp;paymemo=20200831085924-api&amp;paymentmode=&amp;paymenttype=mmk&amp;payphone=0917001177&amp;paytitle=mmk_%E9%87%91%E9%A1%8D%E9%82%8A%E7%95%8C%E5%80%BC2&amp;timestamp=20200831085924&amp;transmode=&amp;checksum=fcd4662d9e70bbc38a26093471274e749bb9dcd7e68a46d20563f296c6facfbe
+
+請求返回值：
+{
+    "amount": "1000",
+    "duedate": "20200930085924",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085924",
+    "paycode": "EST00030136075",
+    "paymentnumber": 131564,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt38.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt38.2')" >
+        pass</a>
+
+    <div id='div_pt38.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt38.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt38.2: mmk_金額邊界值2測試開始前準備
+duration:0.38978099822998047
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=19999.0&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090014&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831090014&amp;paymemo=20200831090014-api&amp;paymentmode=lifeet_2345&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090014&amp;transmode=&amp;checksum=1221bf7e80bf6a784aa86343358876cf737b2ec2f938f7b47ea845335049e2eb
+
+請求返回值：
+{
+    "amount": "19999",
+    "duedate": "20200930090014",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831090014",
+    "paycode": "EST00020136583",
+    "paymentnumber": 131572,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt38.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt38.3')" >
+        pass</a>
+
+    <div id='div_pt38.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt38.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt38.3: mmk_金額邊界值2測試開始前準備
+duration:0.4438638687133789
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=19999.0&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090018&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090018&amp;paymemo=20200831090018-api&amp;paymentmode=lifeet_2345&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090018&amp;transmode=&amp;checksum=b0e281f3f5c382a67fd8066990aaae5929ef824b02db770cf11185e570dc842e
+
+請求返回值：
+{
+    "amount": "19999",
+    "duedate": "20200930090018",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090018",
+    "paycode": "EST00000136285",
+    "paymentnumber": 131574,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_37</td>
+    <td>mmk_金額邊界值3</td>
+    <td>1.379</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c39',3)">Detail</a></td>
+</tr>
+
+<tr id='pt39.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt39.1')" >
+        pass</a>
+
+    <div id='div_pt39.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt39.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt39.1: mmk_金額邊界值3測試開始前準備
+duration:0.3751392364501953
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=100&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085926&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085926&amp;paymemo=20200831085926-api&amp;paymentmode=&amp;paymenttype=mmk&amp;payphone=0917001177&amp;paytitle=mmk_%E9%87%91%E9%A1%8D%E9%82%8A%E7%95%8C%E5%80%BC3&amp;timestamp=20200831085926&amp;transmode=&amp;checksum=1df6e4cb478dcfa74097b8e51588b2e5a8f2ed11c896b54ca316818fafdab1a5
+
+請求返回值：
+{
+    "amount": "100",
+    "duedate": "20200930085926",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085926",
+    "paycode": "EST00040136976",
+    "paymentnumber": 131565,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt39.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt39.2')" >
+        pass</a>
+
+    <div id='div_pt39.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt39.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt39.2: mmk_金額邊界值3測試開始前準備
+duration:0.2849283218383789
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=51.0&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090019&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090019&amp;paymemo=20200831090019-api&amp;paymentmode=lifeet_2345&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090019&amp;transmode=&amp;checksum=2d81acbae21338f1eb05885365c9a2c55a61801d5a99a9303dc8ad35b172044c
+
+請求返回值：
+{
+    "amount": "51",
+    "duedate": "20200930090019",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090019",
+    "paycode": "EST00030136186",
+    "paymentnumber": 131575,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt39.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt39.3')" >
+        pass</a>
+
+    <div id='div_pt39.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt39.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt39.3: mmk_金額邊界值3測試開始前準備
+duration:0.4326176643371582
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=51.0&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090028&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831090028&amp;paymemo=20200831090028-api&amp;paymentmode=lifeet_2345&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090028&amp;transmode=&amp;checksum=29f0f139b28b359ad55f91e9056bcd20fb68f6c5a33d6104e8e18779347e3f7e
+
+請求返回值：
+{
+    "amount": "51",
+    "duedate": "20200930090028",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831090028",
+    "paycode": "EST00040136689",
+    "paymentnumber": 131578,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_38</td>
+    <td>mmk_金額邊界值4</td>
+    <td>1.358</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c40',3)">Detail</a></td>
+</tr>
+
+<tr id='pt40.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt40.1')" >
+        pass</a>
+
+    <div id='div_pt40.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt40.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt40.1: mmk_金額邊界值4測試開始前準備
+duration:0.3862171173095703
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=50.0&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085927&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085927&amp;paymemo=20200831085927-api&amp;paymentmode=&amp;paymenttype=mmk&amp;payphone=0917001177&amp;paytitle=mmk_%E9%87%91%E9%A1%8D%E9%82%8A%E7%95%8C%E5%80%BC4&amp;timestamp=20200831085927&amp;transmode=&amp;checksum=77abd6de27479f47560e6cc3a66ee3f2c3ff3f1e02c5b06046eae9d6740e0934
+
+請求返回值：
+{
+    "amount": "50",
+    "duedate": "20200930085927",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085927",
+    "paycode": "EST00030136777",
+    "paymentnumber": 131566,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt40.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt40.2')" >
+        pass</a>
+
+    <div id='div_pt40.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt40.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt40.2: mmk_金額邊界值4測試開始前準備
+duration:0.33530712127685547
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=50.0&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090020&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090020&amp;paymemo=20200831090020-api&amp;paymentmode=ibon_555555&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090020&amp;transmode=&amp;checksum=c6275c17db02ba9ca94e7fbf9ca9d186fc317cf4f09bebb4125d3be8e9eff5a7
+
+請求返回值：
+{
+    "amount": "50",
+    "duedate": "20200930090020",
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090020",
+    "paycode": "EST00020136587",
+    "paymentnumber": 131576,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt40.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt40.3')" >
+        pass</a>
+
+    <div id='div_pt40.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt40.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt40.3: mmk_金額邊界值4測試開始前準備
+duration:0.33246493339538574
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=50.0&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090043&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831090043&amp;paymemo=20200831090043-api&amp;paymentmode=ibon_555555&amp;paymenttype=mmk&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090043&amp;transmode=&amp;checksum=09bccbab1f2ae1819c5590e26e50a9f38f517d65414a6774a2610f1ba1a3100d
+
+請求返回值：
+{
+    "amount": "50",
+    "duedate": "20200930090043",
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831090043",
+    "paycode": "EST00050136490",
+    "paymentnumber": 131579,
+    "rc": "0",
+    "rm": "OK"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_4</td>
+    <td>webatm</td>
+    <td>1.402</td>
+    <td>2</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c41',2)">Detail</a></td>
+</tr>
+
+<tr id='pt41.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt41.1')" >
+        pass</a>
+
+    <div id='div_pt41.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt41.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt41.1: webatm測試開始前準備
+duration:0.37637829780578613
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930085929&amp;merchantnumber=118460&amp;merchantordernumber=&amp;ordernumber=20200831085929&amp;paymemo=20200831085929-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085929&amp;transmode=&amp;checksum=4647b38ecad8b5462ec54c18a419ad59cd95dc2727f2daca8488325695e43590
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "118460",
+    "ordernumber": "20200831085929",
+    "paymentnumber": 25330,
+    "rc": "1",
+    "redirect_data": {
+        "CardPayRq": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iQmlnNSI/PjxDYXJkUGF5UnE+PFNlbmRTZXFObz4yMjA1PC9TZW5kU2VxTm8+PE1JRD5UMDAxMjM0NTY3ODI8L01JRD48RnVuQ29kZT48L0Z1bkNvZGU+PFVzZXJEYXRhPk1NS19BUElfVEVTVF+0+rjVPC9Vc2VyRGF0YT48T05PPjY4MTkyPC9PTk8+PEluQWNjb3VudE5vPjEyMTYzMDAwMDAyMTExNjc8L0luQWNjb3VudE5vPjxBbW91bnQ+MTAwMDA8L0Ftb3VudD48TUFDPnR2NW42blViSEwyWEtFZmJBVTE4NUVkMjRKbVkyTklNPC9NQUM+PFJzVVJMPmh0dHBzOi8vc2l0LjExNzd0ZWNoLmNvbS50dy8xMTc3cGF5bWVudC92YXAvYjAwNy93ZWJhdG1fcmVzcG9uc2UuanNwPC9Sc1VSTD48L0NhcmRQYXlScT4="
+    },
+    "redirect_encode": "utf-8",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/vap/firstbank/webatm",
+    "virtualaccount": "1216300000211167"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt41.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt41.2')" >
+        pass</a>
+
+    <div id='div_pt41.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt41.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt41.2: webatm測試開始前準備
+duration:0.4244401454925537
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=10000&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.1.1&amp;currency=TWD&amp;duedate=20200930090012&amp;merchantnumber=118558&amp;merchantordernumber=&amp;ordernumber=20200831090012&amp;paymemo=20200831090012-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0999999999&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831090012&amp;transmode=&amp;checksum=278fc620ae73453a70d3f168e908bc957acd0ea0a4f196c53c89ccabe3800e9c
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "118558",
+    "ordernumber": "20200831090012",
+    "paymentnumber": 25347,
+    "rc": "1",
+    "redirect_data": {
+        "CardPayRq": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iQmlnNSI/PjxDYXJkUGF5UnE+PFNlbmRTZXFObz4yMjA5PC9TZW5kU2VxTm8+PE1JRD5UMDAxMjM0NTY3ODI8L01JRD48RnVuQ29kZT48L0Z1bkNvZGU+PFVzZXJEYXRhPk1NS19BUElfVEVTVF+0+rjVPC9Vc2VyRGF0YT48T05PPjY4MjE3PC9PTk8+PEluQWNjb3VudE5vPjEyMTYzMDAwMDA2MTExODk8L0luQWNjb3VudE5vPjxBbW91bnQ+MTAwMDA8L0Ftb3VudD48TUFDPk1RWlpZNDhOa042NDhqS2tBRFdOOGtvNXJZc2I2cVZ6PC9NQUM+PFJzVVJMPmh0dHBzOi8vc2l0LjExNzd0ZWNoLmNvbS50dy8xMTc3cGF5bWVudC92YXAvYjAwNy93ZWJhdG1fcmVzcG9uc2UuanNwPC9Sc1VSTD48L0NhcmRQYXlScT4="
+    },
+    "redirect_encode": "utf-8",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/vap/firstbank/webatm",
+    "virtualaccount": "1216300000611189"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_54</td>
+    <td>webatm_007</td>
+    <td>1.340</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c42',1)">Detail</a></td>
+</tr>
+
+<tr id='pt42.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt42.1')" >
+        pass</a>
+
+    <div id='div_pt42.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt42.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt42.1: webatm_007測試開始前準備
+duration:0.3382103443145752
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=305&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085951&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085951&amp;paymemo=20200831085951-api&amp;paymentmode=&amp;paymenttype=webatm&amp;payphone=0917001177&amp;paytitle=MMK_API_TEST_%E6%B8%AC%E8%A9%A6&amp;timestamp=20200831085951&amp;transmode=&amp;checksum=d3cc4e6fcb07c877868463f1b3f14021ecf9f2842e454cab340eb4f4dd4c8131
+
+請求返回值：
+{
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085951",
+    "paymentnumber": 25343,
+    "rc": "1",
+    "redirect_data": {
+        "CardPayRq": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iQmlnNSI/PjxDYXJkUGF5UnE+PFNlbmRTZXFObz4yMjA3PC9TZW5kU2VxTm8+PE1JRD5UMDAxMjM0NTY3ODI8L01JRD48RnVuQ29kZT48L0Z1bkNvZGU+PFVzZXJEYXRhPk1NS19BUElfVEVTVF+0+rjVPC9Vc2VyRGF0YT48T05PPjY4MjA4PC9PTk8+PEluQWNjb3VudE5vPjEyMTYzMDAwMDAzMTExNzE8L0luQWNjb3VudE5vPjxBbW91bnQ+MzA1PC9BbW91bnQ+PE1BQz5UQkZLRHpPSWdBakNTNXpRWk8rOGdZTWZaVENITkhNZjwvTUFDPjxSc1VSTD5odHRwczovL3NpdC4xMTc3dGVjaC5jb20udHcvMTE3N3BheW1lbnQvdmFwL2IwMDcvd2ViYXRtX3Jlc3BvbnNlLmpzcDwvUnNVUkw+PC9DYXJkUGF5UnE+"
+    },
+    "redirect_encode": "utf-8",
+    "redirect_method": "post",
+    "redirect_url": "https://sit.1177tech.com.tw/simulator/vap/firstbank/webatm",
+    "virtualaccount": "1216300000311171"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_58</td>
+    <td>atm_未帶bankid值</td>
+    <td>1.068</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c43',1)">Detail</a></td>
+</tr>
+
+<tr id='pt43.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt43.1')" >
+        pass</a>
+
+    <div id='div_pt43.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt43.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt43.1: atm_未帶bankid值測試開始前準備
+duration:0.05337214469909668
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=400&amp;bankid=&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930085956&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085956&amp;paymemo=20200831085956&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=atm_%E6%9C%AA%E5%B8%B6bankid%E5%80%BC&amp;timestamp=20200831085956&amp;transmode=&amp;checksum=28faa752d37116259472bafd8321a34e5f448293896f6ae284a2b4c009d1a6d5
+
+請求返回值：
+{
+    "rc": "202",
+    "rm": "找不到必要參數(bankid)"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_59</td>
+    <td>atm_bankid_009_未帶IP</td>
+    <td>1.804</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c44',1)">Detail</a></td>
+</tr>
+
+<tr id='pt44.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt44.1')" >
+        pass</a>
+
+    <div id='div_pt44.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt44.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt44.1: atm_bankid_009_未帶IP測試開始前準備
+duration:0.8016848564147949
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=400&amp;bankid=009&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=&amp;currency=TWD&amp;duedate=20200930085957&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831085957&amp;paymemo=20200831085957&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=atm_bankid_009_%E6%9C%AA%E5%B8%B6IP&amp;timestamp=20200831085957&amp;transmode=&amp;checksum=74537edb291ddbf9996dd7ffdc58bdd3ecdff6c55845e0607ca0b3a69ef18ed3
+
+請求返回值：
+{
+    "amount": "400",
+    "bankid": "009",
+    "duedate": "20200930085957",
+    "lang": "ch",
+    "merchantnumber": "117840",
+    "ordernumber": "20200831085957",
+    "paymentnumber": 25345,
+    "rc": "0",
+    "rm": "OK",
+    "virtualaccount": "63242000203178"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_60</td>
+    <td>atm_未帶金額</td>
+    <td>1.064</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c45',1)">Detail</a></td>
+</tr>
+
+<tr id='pt45.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt45.1')" >
+        pass</a>
+
+    <div id='div_pt45.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt45.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt45.1: atm_未帶金額測試開始前準備
+duration:0.06329607963562012
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930090001&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831090001&amp;paymemo=20200831090001&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=atm_%E9%87%91%E9%A1%8D%E9%82%8A%E7%95%8C%E5%80%BC_%E5%A4%A7%E6%96%BC%E4%BA%A4%E6%98%93%E9%87%91%E9%A1%8D&amp;timestamp=20200831090001&amp;transmode=&amp;checksum=19e7161a21f6b5c3bf3c0f79fa18f7d886c2183cb4dc5485c18aed32312e2e55
+
+請求返回值：
+{
+    "rc": "202",
+    "rm": "參數(amount)值未設定!"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_61</td>
+    <td>atm_未帶ordernumber</td>
+    <td>1.069</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c46',1)">Detail</a></td>
+</tr>
+
+<tr id='pt46.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt46.1')" >
+        pass</a>
+
+    <div id='div_pt46.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt46.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt46.1: atm_未帶ordernumber測試開始前準備
+duration:0.06908512115478516
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=400&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930090002&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=&amp;paymemo=20200831090002&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=atm_%E9%87%91%E9%A1%8D%E9%82%8A%E7%95%8C%E5%80%BC_%E5%A4%A7%E6%96%BC%E4%BA%A4%E6%98%93%E9%87%91%E9%A1%8D&amp;timestamp=20200831090002&amp;transmode=&amp;checksum=02bde891e638db8b8ab22c2a81c088c84c0023769341fb320fc45c58d2896bb9
+
+請求返回值：
+{
+    "rc": "202",
+    "rm": "參數(ordernumber)值未設定!"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_62</td>
+    <td>atm_交易驗證碼不合</td>
+    <td>1.077</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c47',1)">Detail</a></td>
+</tr>
+
+<tr id='pt47.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt47.1')" >
+        pass</a>
+
+    <div id='div_pt47.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt47.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt47.1: atm_交易驗證碼不合測試開始前準備
+duration:0.06237673759460449
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=100&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930090003&amp;merchantnumber=117840&amp;merchantordernumber=&amp;ordernumber=20200831090003&amp;paymemo=20200831090003&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=test&amp;timestamp=20200831090003&amp;transmode=&amp;checksum=e8bd2e7b401be055aba2bc14197c7d94eebf5afc6e39d8c7b6508ac1cae6a975
+
+請求返回值：
+{
+    "rc": "206",
+    "rm": "交易驗證碼不合!"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_63</td>
+    <td>atm_商店不存在</td>
+    <td>1.049</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c48',1)">Detail</a></td>
+</tr>
+
+<tr id='pt48.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt48.1')" >
+        pass</a>
+
+    <div id='div_pt48.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt48.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt48.1: atm_商店不存在測試開始前準備
+duration:0.04525256156921387
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=100&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930090004&amp;merchantnumber=117841&amp;merchantordernumber=&amp;ordernumber=20200831090004&amp;paymemo=20200831090004&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=test&amp;timestamp=20200831090004&amp;transmode=&amp;checksum=2bd20c1422c36aa7c83aa7dece4888f6f140d8ebd6aae6c4e784eb5ca7662b50
+
+請求返回值：
+{
+    "rc": "400",
+    "rm": "商店不存在!(117841)"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>paramunittest.AcceptPayment_64</td>
+    <td>atm_商店已停用</td>
+    <td>1.053</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c49',1)">Detail</a></td>
+</tr>
+
+<tr id='pt49.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testAcceptPayment</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt49.1')" >
+        pass</a>
+
+    <div id='div_pt49.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt49.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt49.1: atm_商店已停用測試開始前準備
+duration:0.04686450958251953
+
+請求地址：https://sit.1177tech.com.tw:443/1177payment/api/acceptpayment?amount=100&amp;bankid=007&amp;cardcvc2=&amp;cardexpiry=&amp;cardnumber=&amp;consumerip=192.168.11.77&amp;currency=TWD&amp;duedate=20200930090005&amp;merchantnumber=118544&amp;merchantordernumber=&amp;ordernumber=20200831090005&amp;paymemo=20200831090005&amp;paymentmode=&amp;paymenttype=atm&amp;payphone=0917001177&amp;paytitle=test&amp;timestamp=20200831090005&amp;transmode=&amp;checksum=ebb4e34bc18a355299d00050a58f27be5e088ac1e18972d9075f08a3f4b0014e
+
+請求返回值：
+{
+    "rc": "300",
+    "rm": "商店(118544)已停用"
+}
+測試結束，輸出log完結
+
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td colspan='3'>Total</td>
+    <td>109</td>
+    <td>103</td>
+    <td>6</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+    <script type="text/javascript">
+var data = [
+	{
+		value: 0,
+		color: "#ebccd1",
+		label: "Error",
+		labelColor: 'white',
+		labelFontSize: '16'
+	},
+	{
+		value : 6,
+		color : "#faebcc",
+		label: "Fail",
+		labelColor: 'white',
+		labelFontSize: '16'
+	},
+	{
+		value : 103,
+		color : "#d6e9c6",
+		label : "Pass",
+		labelColor: 'white',
+		labelFontSize: '16'
+	}			
+]
+
+var newopts = {
+     animationSteps: 100,
+ 		animationEasing: 'easeInOutQuart',
+}
+
+//Get the context of the canvas element we want to select
+var ctx = document.getElementById("myChart").getContext("2d");
+
+var myNewChart = new Chart(ctx).Pie(data,newopts);
+
+</script>
+	
+</body>
+</html>

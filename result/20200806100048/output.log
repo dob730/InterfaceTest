@@ -1,0 +1,7 @@
+2020-08-06 10:00:48,505 - root - INFO - resultPathD:\InterfaceTest\result\20200806100048\report.html
+2020-08-06 10:00:48,505 - root - INFO - caseListFileD:\InterfaceTest\caselist.txt
+2020-08-06 10:00:48,505 - root - INFO - caseList[]
+2020-08-06 10:00:49,880 - root - INFO - ********TEST START********
+2020-08-06 10:04:12,715 - root - INFO - *********TEST END*********
+2020-08-06 10:04:13,096 - root - INFO - The test report has send to developer by email.
+2020-08-06 10:04:13,097 - root - INFO - Send report email to developer.

@@ -1,0 +1,7 @@
+paramunittest
+beautifulsoup4
+xmltodict
+openpyxl==3.0.3
+requests==2.23.0
+xlrd==1.2.0
+

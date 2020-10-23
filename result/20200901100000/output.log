@@ -1,0 +1,8 @@
+2020-09-01 10:00:00,541 - root - INFO - resultPathD:\InterfaceTest\result\20200901100000\report.html
+2020-09-01 10:00:00,541 - root - INFO - caseListFileD:\InterfaceTest\caselist.txt
+2020-09-01 10:00:00,541 - root - INFO - caseList[]
+2020-09-01 10:00:08,122 - root - INFO - ********TEST START********
+2020-09-01 10:00:08,130 - root - ERROR - 'super' object has no attribute '__getattr__'
+2020-09-01 10:00:08,130 - root - INFO - *********TEST END*********
+2020-09-01 10:00:09,036 - root - INFO - The test report has send to developer by email.
+2020-09-01 10:00:09,037 - root - INFO - Send report email to developer.

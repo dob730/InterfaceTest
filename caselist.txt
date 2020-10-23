@@ -1,0 +1,7 @@
+user/testRefund
+user/testQueryOrder
+user/testRefundReversal
+user/testCancelOrder
+user/testCreditCard
+user/testAcceptPayment
+#user/testAAA

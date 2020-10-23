@@ -1,0 +1,50 @@
+{
+   "RecBilling":{
+      "createBilling":{
+         "url":"/RecBilling/api",
+         "method":"post"
+      },
+      "getShow":{
+         "url":"/get/show",
+         "method":"get"
+      }
+   },
+   "Payment":{
+      "cancelOrder": {
+         "url": "/1177payment/api/cancel_order",
+         "method": "post"
+      },
+      "payment": {
+         "url": "/1177payment/paypage/payment",
+         "method": "post"
+      },
+      "acceptPayment": {
+         "url": "/1177payment/api/acceptpayment",
+         "method": "post"
+      },
+      "simulator": {
+         "url": "/simulator/vap/firstbank/webatm",
+         "method": "post"
+      },
+      "3dAuth": {
+         "url": "/simulator/cub_3d_auth.jsp",
+         "method": "post"
+      },
+      "3dReceive": {
+         "url": "/1177payment/creditcard/cub/receive_3d.jsp",
+         "method": "post"
+      },
+      "refund": {
+         "url": "/1177payment/api/refund",
+         "method": "post"
+      },
+      "refundReversal": {
+         "url": "/1177payment/api/refund_reversal",
+         "method": "post"
+      },
+      "queryOrder": {
+         "url": "/1177payment/api/query_order",
+         "method": "post"
+      }
+   }
+}
